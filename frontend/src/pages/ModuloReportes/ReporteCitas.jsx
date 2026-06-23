@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { useAuthStore } from "../../../store/auth_store";
+import { useAuthStore } from "../../store/auth_store";
 import {
   ESTADO_CITA,
   ESTADO_CITA_LABELS,
   ESTADO_CITA_COLORS,
-} from "../../../constants/enums";
+} from "../../constants/enums";
 
 export default function ReporteCitas({ dataMaster, user }) {
   // Estados para filtros
