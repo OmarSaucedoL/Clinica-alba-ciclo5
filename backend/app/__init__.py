@@ -18,9 +18,7 @@ def create_app():
     # Inicializar mail
     mail.init_app(app)
     
-    # Importar y registrar rutas
-    from .routes import main_routes, auth_routes, citas_routes, usuario_routes, paciente_routes, inventario_routes, personal_routes, procedimientos_routes_routes, finanzas_routes, consultorios_routes, servicios_routes, reportes_routes
-    
+    from .routes import main_routes, auth_routes, citas_routes, usuario_routes, paciente_routes, inventario_routes, personal_routes, procedimientos_routes_routes, finanzas_routes, consultorios_routes, servicios_routes, reportes_routes, odontograma_routes
     # Registro de Blueprints
     app.register_blueprint(main_routes)
     app.register_blueprint(auth_routes)
@@ -32,7 +30,7 @@ def create_app():
     app.register_blueprint(procedimientos_routes_routes)
     app.register_blueprint(consultorios_routes)
     app.register_blueprint(servicios_routes)
-
+    app.register_blueprint(odontograma_routes)
     app.register_blueprint(finanzas_routes)
     app.register_blueprint(reportes_routes)
     
