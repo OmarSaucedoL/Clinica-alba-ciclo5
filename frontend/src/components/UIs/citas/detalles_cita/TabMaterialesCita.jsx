@@ -17,7 +17,7 @@ export default function TabMaterialesCita({
   setSelectedDienteCodigo,
   materialObservacion,
   setMaterialObservacion,
-  serviciosCita,
+  catalogoServicios,
   catalogoDientes,
   addingMaterial,
   handleAddMaterial,
@@ -203,8 +203,8 @@ export default function TabMaterialesCita({
                   onChange={(e) => setSelectedServicioIdForMaterial(e.target.value)}
                 >
                   <option value="">Ninguno...</option>
-                  {serviciosCita.map((s) => (
-                    <option key={s.id_cita_servicio} value={s.id_servicio}>
+                  {catalogoServicios.map((s) => (
+                    <option key={s.id} value={s.id}>
                       {s.nombre}
                     </option>
                   ))}

@@ -772,7 +772,7 @@ export default function DetallesCitas({
                     setSelectedDienteCodigo={setSelectedDienteCodigo}
                     materialObservacion={materialObservacion}
                     setMaterialObservacion={setMaterialObservacion}
-                    serviciosCita={serviciosCita}
+                    catalogoServicios={catalogoServicios}
                     catalogoDientes={catalogoDientes}
                     addingMaterial={addingMaterial}
                     handleAddMaterial={handleAddMaterial}
