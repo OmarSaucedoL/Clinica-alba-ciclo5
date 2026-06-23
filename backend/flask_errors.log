@@ -1,0 +1,365 @@
+2026-04-06 03:00:42,655 WARNING:  * Debugger is active!
+2026-04-06 03:00:42,658 INFO:  * Debugger PIN: 740-828-376
+2026-04-06 03:08:24,462 INFO:  * Detected change in 'C:\\Users\\eddym\\ProySI1\\Clinica-odontologica-alba-si1\\backend\\app\\config.py', reloading
+2026-04-06 03:08:24,848 WARNING:  * Debugger is active!
+2026-04-06 03:08:24,852 INFO:  * Debugger PIN: 740-828-376
+2026-04-06 03:08:52,289 INFO: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-04-06 03:08:52,289 INFO: [33mPress CTRL+C to quit[0m
+2026-04-06 03:08:52,290 INFO:  * Restarting with stat
+2026-04-06 03:08:52,580 WARNING:  * Debugger is active!
+2026-04-06 03:08:52,583 INFO:  * Debugger PIN: 740-828-376
+2026-04-06 03:19:41,390 INFO:  * Detected change in 'C:\\Users\\eddym\\ProySI1\\Clinica-odontologica-alba-si1\\backend\\run.py', reloading
+2026-04-06 03:19:41,429 INFO:  * Restarting with stat
+2026-04-06 03:22:20,028 INFO: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-04-06 03:22:20,028 INFO: [33mPress CTRL+C to quit[0m
+2026-04-06 03:22:20,029 INFO:  * Restarting with stat
+2026-04-06 03:22:20,323 WARNING:  * Debugger is active!
+2026-04-06 03:22:20,326 INFO:  * Debugger PIN: 740-828-376
+2026-04-06 03:23:08,268 INFO: 127.0.0.1 - - [06/Apr/2026 03:23:08] "GET / HTTP/1.1" 200 -
+2026-04-06 03:23:13,426 INFO: 127.0.0.1 - - [06/Apr/2026 03:23:13] "GET / HTTP/1.1" 200 -
+2026-04-06 03:23:28,316 INFO: 127.0.0.1 - - [06/Apr/2026 03:23:28] "[33mGET /test-db HTTP/1.1[0m" 404 -
+2026-04-06 03:24:00,637 INFO: 127.0.0.1 - - [06/Apr/2026 03:24:00] "GET /api/test-db HTTP/1.1" 200 -
+2026-04-06 03:25:24,874 INFO:  * Detected change in 'C:\\Users\\eddym\\ProySI1\\Clinica-odontologica-alba-si1\\backend\\app\\config.py', reloading
+2026-04-06 03:25:24,912 INFO:  * Restarting with stat
+2026-04-06 03:25:25,246 WARNING:  * Debugger is active!
+2026-04-06 03:25:25,248 INFO:  * Debugger PIN: 740-828-376
+2026-04-06 03:25:30,459 INFO: 127.0.0.1 - - [06/Apr/2026 03:25:30] "GET /api/test-db HTTP/1.1" 200 -
+2026-04-06 03:25:33,517 INFO: 127.0.0.1 - - [06/Apr/2026 03:25:33] "GET /api/test-db HTTP/1.1" 200 -
+2026-04-06 03:26:36,651 INFO:  * Detected change in 'C:\\Users\\eddym\\ProySI1\\Clinica-odontologica-alba-si1\\backend\\app\\config.py', reloading
+2026-04-06 03:26:36,691 INFO:  * Restarting with stat
+2026-04-06 03:26:36,995 WARNING:  * Debugger is active!
+2026-04-06 03:26:36,999 INFO:  * Debugger PIN: 740-828-376
+2026-04-06 03:26:46,215 INFO: 127.0.0.1 - - [06/Apr/2026 03:26:46] "GET /api/test-db HTTP/1.1" 200 -
+2026-04-06 03:29:14,221 INFO:  * Detected change in 'C:\\Users\\eddym\\ProySI1\\Clinica-odontologica-alba-si1\\backend\\app\\routes\\test_routes.py', reloading
+2026-04-06 03:29:14,261 INFO:  * Restarting with stat
+2026-04-06 03:29:14,613 WARNING:  * Debugger is active!
+2026-04-06 03:29:14,616 INFO:  * Debugger PIN: 740-828-376
+2026-04-06 03:29:19,038 INFO: 127.0.0.1 - - [06/Apr/2026 03:29:19] "GET /api/test-db HTTP/1.1" 200 -
+2026-04-06 03:29:22,204 INFO: 127.0.0.1 - - [06/Apr/2026 03:29:22] "GET /api/test-db HTTP/1.1" 200 -
+2026-04-06 03:29:24,798 INFO: 127.0.0.1 - - [06/Apr/2026 03:29:24] "GET /api/test-db HTTP/1.1" 200 -
+2026-04-06 03:29:26,387 INFO: 127.0.0.1 - - [06/Apr/2026 03:29:26] "GET /api/test-db HTTP/1.1" 200 -
+2026-04-06 03:29:27,168 INFO: 127.0.0.1 - - [06/Apr/2026 03:29:27] "GET /api/test-db HTTP/1.1" 200 -
+2026-04-06 03:29:28,430 INFO: 127.0.0.1 - - [06/Apr/2026 03:29:28] "GET /api/test-db HTTP/1.1" 200 -
+2026-04-06 03:29:29,023 INFO: 127.0.0.1 - - [06/Apr/2026 03:29:29] "GET /api/test-db HTTP/1.1" 200 -
+2026-04-06 03:29:29,024 INFO: 127.0.0.1 - - [06/Apr/2026 03:29:29] "GET /api/test-db HTTP/1.1" 200 -
+2026-04-06 03:29:30,236 INFO: 127.0.0.1 - - [06/Apr/2026 03:29:30] "GET /api/test-db HTTP/1.1" 200 -
+2026-04-06 03:29:41,291 INFO: 127.0.0.1 - - [06/Apr/2026 03:29:41] "GET /api/test-db HTTP/1.1" 200 -
+2026-04-06 03:31:02,311 INFO:  * Detected change in 'C:\\Users\\eddym\\ProySI1\\Clinica-odontologica-alba-si1\\backend\\app\\routes\\test_routes.py', reloading
+2026-04-06 03:31:02,358 INFO:  * Restarting with stat
+2026-04-06 03:31:56,619 INFO: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-04-06 03:31:56,619 INFO: [33mPress CTRL+C to quit[0m
+2026-04-06 03:31:56,620 INFO:  * Restarting with stat
+2026-04-06 03:31:56,907 WARNING:  * Debugger is active!
+2026-04-06 03:31:56,910 INFO:  * Debugger PIN: 740-828-376
+2026-04-06 03:32:05,248 INFO: 127.0.0.1 - - [06/Apr/2026 03:32:05] "GET /api/test-db HTTP/1.1" 200 -
+2026-04-06 03:32:06,672 INFO: 127.0.0.1 - - [06/Apr/2026 03:32:06] "GET /api/test-db HTTP/1.1" 200 -
+2026-04-06 03:34:08,277 INFO:  * Detected change in 'C:\\Users\\eddym\\ProySI1\\Clinica-odontologica-alba-si1\\backend\\run.py', reloading
+2026-04-06 03:34:08,349 INFO:  * Restarting with stat
+2026-04-06 03:34:08,683 WARNING:  * Debugger is active!
+2026-04-06 03:34:08,685 INFO:  * Debugger PIN: 740-828-376
+2026-04-06 03:34:30,554 INFO:  * Detected change in 'C:\\Users\\eddym\\ProySI1\\Clinica-odontologica-alba-si1\\backend\\app\\routes\\auth_routes.py', reloading
+2026-04-06 03:34:30,598 INFO:  * Restarting with stat
+2026-04-06 03:34:32,315 INFO:  * Restarting with stat
+2026-04-06 03:36:20,261 INFO:  * Restarting with stat
+2026-04-06 03:37:18,645 INFO:  * Restarting with stat
+2026-04-06 03:37:33,992 INFO:  * Restarting with stat
+2026-04-06 03:37:51,547 INFO:  * Restarting with stat
+2026-04-06 03:39:01,102 INFO:  * Restarting with stat
+2026-04-06 03:40:47,029 INFO:  * Restarting with stat
+2026-04-06 03:43:24,981 INFO:  * Restarting with stat
+2026-04-06 03:44:58,300 INFO:  * Restarting with stat
+2026-04-06 03:47:09,957 INFO:  * Restarting with stat
+2026-04-06 03:53:12,381 INFO:  * Restarting with stat
+2026-04-06 03:53:12,718 WARNING:  * Debugger is active!
+2026-04-06 03:53:12,721 INFO:  * Debugger PIN: 740-828-376
+2026-04-06 03:53:22,067 INFO: 127.0.0.1 - - [06/Apr/2026 03:53:22] "GET /api/test/tables HTTP/1.1" 200 -
+2026-04-06 03:53:25,648 INFO: 127.0.0.1 - - [06/Apr/2026 03:53:25] "GET /api/test/tables HTTP/1.1" 200 -
+2026-04-06 03:53:27,426 INFO: 127.0.0.1 - - [06/Apr/2026 03:53:27] "GET /api/test/tables HTTP/1.1" 200 -
+2026-04-06 03:53:33,731 INFO: 127.0.0.1 - - [06/Apr/2026 03:53:33] "GET /api/test/tables HTTP/1.1" 200 -
+2026-04-06 03:53:34,412 INFO: 127.0.0.1 - - [06/Apr/2026 03:53:34] "GET /api/test/tables HTTP/1.1" 200 -
+2026-04-06 03:54:00,485 INFO: 127.0.0.1 - - [06/Apr/2026 03:54:00] "GET /api/test/tables HTTP/1.1" 200 -
+2026-04-06 03:55:16,429 INFO:  * Detected change in 'C:\\Users\\eddym\\ProySI1\\Clinica-odontologica-alba-si1\\backend\\app\\routes\\test_routes.py', reloading
+2026-04-06 03:55:16,472 INFO:  * Restarting with stat
+2026-04-06 03:55:16,806 WARNING:  * Debugger is active!
+2026-04-06 03:55:16,809 INFO:  * Debugger PIN: 740-828-376
+2026-04-06 03:55:22,692 INFO:  * Detected change in 'C:\\Users\\eddym\\ProySI1\\Clinica-odontologica-alba-si1\\backend\\app\\routes\\test_routes.py', reloading
+2026-04-06 03:55:22,739 INFO:  * Restarting with stat
+2026-04-06 03:55:23,048 WARNING:  * Debugger is active!
+2026-04-06 03:55:23,051 INFO:  * Debugger PIN: 740-828-376
+2026-04-06 03:55:27,113 INFO: 127.0.0.1 - - [06/Apr/2026 03:55:27] "GET /api/test/tables HTTP/1.1" 200 -
+2026-04-06 03:55:44,201 INFO: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-04-06 03:55:44,202 INFO: [33mPress CTRL+C to quit[0m
+2026-04-06 03:55:44,203 INFO:  * Restarting with stat
+2026-04-06 03:55:44,490 WARNING:  * Debugger is active!
+2026-04-06 03:55:44,493 INFO:  * Debugger PIN: 740-828-376
+2026-04-06 03:55:50,238 INFO: 127.0.0.1 - - [06/Apr/2026 03:55:50] "GET /api/test/tables HTTP/1.1" 200 -
+2026-04-06 03:57:56,045 INFO:  * Detected change in 'C:\\Users\\eddym\\ProySI1\\Clinica-odontologica-alba-si1\\backend\\app\\config.py', reloading
+2026-04-06 03:57:56,085 INFO:  * Restarting with stat
+2026-04-06 03:57:56,406 WARNING:  * Debugger is active!
+2026-04-06 03:57:56,409 INFO:  * Debugger PIN: 740-828-376
+2026-04-06 03:58:03,605 INFO: 127.0.0.1 - - [06/Apr/2026 03:58:03] "GET /api/test/tables HTTP/1.1" 200 -
+2026-04-06 03:58:12,501 INFO:  * Detected change in 'C:\\Users\\eddym\\ProySI1\\Clinica-odontologica-alba-si1\\backend\\app\\config.py', reloading
+2026-04-06 03:58:12,541 INFO:  * Restarting with stat
+2026-04-06 03:58:12,884 WARNING:  * Debugger is active!
+2026-04-06 03:58:12,887 INFO:  * Debugger PIN: 740-828-376
+2026-04-06 03:58:16,906 INFO: 127.0.0.1 - - [06/Apr/2026 03:58:16] "GET /api/test/tables HTTP/1.1" 200 -
+2026-04-06 03:58:26,754 INFO:  * Detected change in 'C:\\Users\\eddym\\ProySI1\\Clinica-odontologica-alba-si1\\backend\\app\\config.py', reloading
+2026-04-06 03:58:26,796 INFO:  * Restarting with stat
+2026-04-06 03:58:27,110 WARNING:  * Debugger is active!
+2026-04-06 03:58:27,112 INFO:  * Debugger PIN: 740-828-376
+2026-04-06 03:58:32,635 INFO: 127.0.0.1 - - [06/Apr/2026 03:58:32] "GET /api/test/tables HTTP/1.1" 200 -
+2026-04-06 03:59:43,124 INFO:  * Detected change in 'C:\\Users\\eddym\\ProySI1\\Clinica-odontologica-alba-si1\\backend\\app\\config.py', reloading
+2026-04-06 03:59:43,167 INFO:  * Restarting with stat
+2026-04-06 04:00:20,336 INFO: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-04-06 04:00:20,336 INFO: [33mPress CTRL+C to quit[0m
+2026-04-06 04:00:20,337 INFO:  * Restarting with stat
+2026-04-06 04:00:20,626 WARNING:  * Debugger is active!
+2026-04-06 04:00:20,629 INFO:  * Debugger PIN: 740-828-376
+2026-04-06 04:00:26,445 INFO: 127.0.0.1 - - [06/Apr/2026 04:00:26] "GET /api/test/tables HTTP/1.1" 200 -
+2026-04-06 04:01:59,263 INFO:  * Detected change in 'C:\\Users\\eddym\\ProySI1\\Clinica-odontologica-alba-si1\\backend\\app\\routes\\test_routes.py', reloading
+2026-04-06 04:01:59,304 INFO:  * Restarting with stat
+2026-04-06 04:01:59,625 WARNING:  * Debugger is active!
+2026-04-06 04:01:59,628 INFO:  * Debugger PIN: 740-828-376
+2026-04-06 04:02:04,256 INFO: 127.0.0.1 - - [06/Apr/2026 04:02:04] "GET /api/test/tables HTTP/1.1" 200 -
+2026-04-06 04:03:31,599 INFO:  * Detected change in 'C:\\Users\\eddym\\ProySI1\\Clinica-odontologica-alba-si1\\backend\\app\\routes\\test_routes.py', reloading
+2026-04-06 04:03:31,638 INFO:  * Restarting with stat
+2026-04-06 04:03:31,954 WARNING:  * Debugger is active!
+2026-04-06 04:03:31,957 INFO:  * Debugger PIN: 740-828-376
+2026-04-06 04:05:48,067 INFO:  * Detected change in 'C:\\Users\\eddym\\ProySI1\\Clinica-odontologica-alba-si1\\backend\\app\\routes\\test_routes.py', reloading
+2026-04-06 04:05:48,116 INFO:  * Restarting with stat
+2026-04-06 04:05:48,454 WARNING:  * Debugger is active!
+2026-04-06 04:05:48,457 INFO:  * Debugger PIN: 740-828-376
+2026-04-06 04:05:53,491 INFO: 127.0.0.1 - - [06/Apr/2026 04:05:53] "GET /api/test/tables HTTP/1.1" 200 -
+2026-04-06 04:09:59,914 INFO:  * Detected change in 'C:\\Users\\eddym\\ProySI1\\Clinica-odontologica-alba-si1\\backend\\app\\routes\\test_routes.py', reloading
+2026-04-06 04:09:59,961 INFO:  * Restarting with stat
+2026-04-06 04:10:00,287 WARNING:  * Debugger is active!
+2026-04-06 04:10:00,290 INFO:  * Debugger PIN: 740-828-376
+2026-04-06 04:10:04,840 INFO: 127.0.0.1 - - [06/Apr/2026 04:10:04] "GET /api/test/tables HTTP/1.1" 200 -
+2026-04-06 04:11:15,177 INFO:  * Detected change in 'C:\\Users\\eddym\\ProySI1\\Clinica-odontologica-alba-si1\\backend\\app\\routes\\test_routes.py', reloading
+2026-04-06 04:11:15,223 INFO:  * Restarting with stat
+2026-04-06 04:11:15,546 WARNING:  * Debugger is active!
+2026-04-06 04:11:15,549 INFO:  * Debugger PIN: 740-828-376
+2026-04-06 04:11:20,287 INFO: 127.0.0.1 - - [06/Apr/2026 04:11:20] "GET /api/test/tables HTTP/1.1" 200 -
+2026-04-06 04:13:12,303 INFO:  * Detected change in 'C:\\Users\\eddym\\ProySI1\\Clinica-odontologica-alba-si1\\backend\\app\\routes\\test_routes.py', reloading
+2026-04-06 04:13:12,344 INFO:  * Restarting with stat
+2026-04-06 04:13:12,671 WARNING:  * Debugger is active!
+2026-04-06 04:13:12,674 INFO:  * Debugger PIN: 740-828-376
+2026-04-06 04:13:16,999 INFO: 127.0.0.1 - - [06/Apr/2026 04:13:16] "GET /api/test/tables HTTP/1.1" 200 -
+2026-04-06 04:19:17,185 INFO: 127.0.0.1 - - [06/Apr/2026 04:19:17] "GET /api/test/tables HTTP/1.1" 200 -
+2026-04-06 04:19:19,982 INFO: 127.0.0.1 - - [06/Apr/2026 04:19:19] "GET /api/test/tables HTTP/1.1" 200 -
+2026-04-06 04:19:22,460 INFO: 127.0.0.1 - - [06/Apr/2026 04:19:22] "GET /api/test/tables HTTP/1.1" 200 -
+2026-04-06 04:20:12,565 INFO:  * Detected change in 'C:\\Users\\eddym\\ProySI1\\Clinica-odontologica-alba-si1\\backend\\app\\routes\\test_routes.py', reloading
+2026-04-06 04:20:12,615 INFO:  * Restarting with stat
+2026-04-06 04:20:13,003 WARNING:  * Debugger is active!
+2026-04-06 04:20:13,007 INFO:  * Debugger PIN: 740-828-376
+2026-04-06 04:20:16,526 INFO: 127.0.0.1 - - [06/Apr/2026 04:20:16] "GET /api/test/tables HTTP/1.1" 200 -
+2026-04-06 04:23:18,501 INFO:  * Detected change in 'C:\\Users\\eddym\\ProySI1\\Clinica-odontologica-alba-si1\\backend\\app\\config.py', reloading
+2026-04-06 04:23:18,546 INFO:  * Restarting with stat
+2026-04-06 04:23:18,872 WARNING:  * Debugger is active!
+2026-04-06 04:23:18,875 INFO:  * Debugger PIN: 740-828-376
+2026-04-06 04:23:23,078 INFO: 127.0.0.1 - - [06/Apr/2026 04:23:23] "GET /api/test/tables HTTP/1.1" 200 -
+2026-04-06 04:23:26,909 INFO: 127.0.0.1 - - [06/Apr/2026 04:23:26] "GET /api/test/tables HTTP/1.1" 200 -
+2026-04-06 04:23:41,699 INFO:  * Detected change in 'C:\\Users\\eddym\\ProySI1\\Clinica-odontologica-alba-si1\\backend\\app\\config.py', reloading
+2026-04-06 04:23:41,742 INFO:  * Restarting with stat
+2026-04-06 04:23:42,051 WARNING:  * Debugger is active!
+2026-04-06 04:23:42,053 INFO:  * Debugger PIN: 740-828-376
+2026-04-06 04:24:32,014 INFO:  * Detected change in 'C:\\Users\\eddym\\ProySI1\\Clinica-odontologica-alba-si1\\backend\\app\\config.py', reloading
+2026-04-06 04:24:32,051 INFO:  * Restarting with stat
+2026-04-06 04:24:32,360 WARNING:  * Debugger is active!
+2026-04-06 04:24:32,363 INFO:  * Debugger PIN: 740-828-376
+2026-04-06 04:24:43,543 INFO: 127.0.0.1 - - [06/Apr/2026 04:24:43] "GET /api/test/tables HTTP/1.1" 200 -
+2026-04-06 04:25:35,950 INFO:  * Detected change in 'C:\\Users\\eddym\\ProySI1\\Clinica-odontologica-alba-si1\\backend\\app\\config.py', reloading
+2026-04-06 04:25:35,989 INFO:  * Restarting with stat
+2026-04-06 04:25:36,341 WARNING:  * Debugger is active!
+2026-04-06 04:25:36,343 INFO:  * Debugger PIN: 740-828-376
+2026-04-06 04:28:01,236 INFO:  * Detected change in 'C:\\Users\\eddym\\ProySI1\\Clinica-odontologica-alba-si1\\backend\\app\\config.py', reloading
+2026-04-06 04:28:01,284 INFO:  * Restarting with stat
+2026-04-06 04:28:01,603 WARNING:  * Debugger is active!
+2026-04-06 04:28:01,606 INFO:  * Debugger PIN: 740-828-376
+2026-04-06 04:28:12,945 INFO: 127.0.0.1 - - [06/Apr/2026 04:28:12] "GET /api/test/tables HTTP/1.1" 200 -
+2026-04-06 04:28:51,653 INFO:  * Detected change in 'C:\\Users\\eddym\\ProySI1\\Clinica-odontologica-alba-si1\\backend\\app\\config.py', reloading
+2026-04-06 04:28:51,696 INFO:  * Restarting with stat
+2026-04-06 04:28:52,007 WARNING:  * Debugger is active!
+2026-04-06 04:28:52,010 INFO:  * Debugger PIN: 740-828-376
+2026-04-06 04:45:27,492 INFO:  * Detected change in 'C:\\Users\\eddym\\ProySI1\\Clinica-odontologica-alba-si1\\backend\\app\\routes\\auth_routes.py', reloading
+2026-04-06 04:45:27,532 INFO:  * Restarting with stat
+2026-04-06 04:45:27,885 WARNING:  * Debugger is active!
+2026-04-06 04:45:27,888 INFO:  * Debugger PIN: 740-828-376
+2026-04-06 04:52:53,933 INFO:  * Detected change in 'C:\\Users\\eddym\\ProySI1\\Clinica-odontologica-alba-si1\\backend\\app\\routes\\auth_routes.py', reloading
+2026-04-06 04:52:53,973 INFO:  * Restarting with stat
+2026-04-06 04:52:54,290 WARNING:  * Debugger is active!
+2026-04-06 04:52:54,293 INFO:  * Debugger PIN: 740-828-376
+2026-04-06 04:56:16,061 INFO:  * Detected change in 'C:\\Users\\eddym\\ProySI1\\Clinica-odontologica-alba-si1\\backend\\app\\routes\\auth_routes.py', reloading
+2026-04-06 04:56:16,100 INFO:  * Restarting with stat
+2026-04-06 04:56:16,432 WARNING:  * Debugger is active!
+2026-04-06 04:56:16,435 INFO:  * Debugger PIN: 740-828-376
+2026-04-06 04:56:25,760 INFO:  * Detected change in 'C:\\Users\\eddym\\ProySI1\\Clinica-odontologica-alba-si1\\backend\\app\\routes\\auth_routes.py', reloading
+2026-04-06 04:56:25,801 INFO:  * Restarting with stat
+2026-04-06 04:56:26,104 WARNING:  * Debugger is active!
+2026-04-06 04:56:26,107 INFO:  * Debugger PIN: 740-828-376
+2026-04-06 05:00:21,449 INFO:  * Detected change in 'C:\\Users\\eddym\\ProySI1\\Clinica-odontologica-alba-si1\\backend\\app\\routes\\auth_routes.py', reloading
+2026-04-06 05:00:21,490 INFO:  * Restarting with stat
+2026-04-06 05:00:21,814 WARNING:  * Debugger is active!
+2026-04-06 05:00:21,817 INFO:  * Debugger PIN: 740-828-376
+2026-04-06 05:00:44,732 INFO:  * Detected change in 'C:\\Users\\eddym\\ProySI1\\Clinica-odontologica-alba-si1\\backend\\app\\routes\\auth_routes.py', reloading
+2026-04-06 05:00:44,770 INFO:  * Restarting with stat
+2026-04-06 05:00:45,090 WARNING:  * Debugger is active!
+2026-04-06 05:00:45,093 INFO:  * Debugger PIN: 740-828-376
+2026-04-06 05:06:23,418 INFO: 127.0.0.1 - - [06/Apr/2026 05:06:23] "OPTIONS /api/register HTTP/1.1" 200 -
+2026-04-06 05:06:26,158 INFO: 127.0.0.1 - - [06/Apr/2026 05:06:26] "[35m[1mPOST /api/register HTTP/1.1[0m" 500 -
+2026-04-06 11:01:22,954 INFO: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-04-06 11:01:22,955 INFO: [33mPress CTRL+C to quit[0m
+2026-04-06 11:01:22,956 INFO:  * Restarting with stat
+2026-04-06 11:01:23,247 WARNING:  * Debugger is active!
+2026-04-06 11:01:23,249 INFO:  * Debugger PIN: 111-423-119
+2026-04-06 11:01:34,735 INFO: 127.0.0.1 - - [06/Apr/2026 11:01:34] "OPTIONS /api/register HTTP/1.1" 200 -
+2026-04-06 11:01:37,328 INFO: 127.0.0.1 - - [06/Apr/2026 11:01:37] "[35m[1mPOST /api/register HTTP/1.1[0m" 500 -
+2026-04-06 11:01:43,199 INFO: 127.0.0.1 - - [06/Apr/2026 11:01:43] "OPTIONS /api/register HTTP/1.1" 200 -
+2026-04-06 11:01:45,720 INFO: 127.0.0.1 - - [06/Apr/2026 11:01:45] "[35m[1mPOST /api/register HTTP/1.1[0m" 500 -
+2026-04-06 11:01:49,664 INFO: 127.0.0.1 - - [06/Apr/2026 11:01:49] "OPTIONS /api/register HTTP/1.1" 200 -
+2026-04-06 11:01:52,251 INFO: 127.0.0.1 - - [06/Apr/2026 11:01:52] "[35m[1mPOST /api/register HTTP/1.1[0m" 500 -
+2026-04-06 11:01:55,522 INFO: 127.0.0.1 - - [06/Apr/2026 11:01:55] "[35m[1mPOST /api/register HTTP/1.1[0m" 500 -
+2026-04-06 11:01:57,847 INFO: 127.0.0.1 - - [06/Apr/2026 11:01:57] "OPTIONS /api/register HTTP/1.1" 200 -
+2026-04-06 11:02:00,320 INFO: 127.0.0.1 - - [06/Apr/2026 11:02:00] "[35m[1mPOST /api/register HTTP/1.1[0m" 500 -
+2026-04-06 11:03:03,254 INFO: 127.0.0.1 - - [06/Apr/2026 11:03:03] "OPTIONS /api/register HTTP/1.1" 200 -
+2026-04-06 11:03:06,574 INFO: 127.0.0.1 - - [06/Apr/2026 11:03:06] "[35m[1mPOST /api/register HTTP/1.1[0m" 201 -
+2026-04-06 11:06:09,812 INFO: 127.0.0.1 - - [06/Apr/2026 11:06:09] "OPTIONS /api/login HTTP/1.1" 200 -
+2026-04-06 11:06:11,971 INFO: 127.0.0.1 - - [06/Apr/2026 11:06:11] "[33mPOST /api/login HTTP/1.1[0m" 404 -
+2026-04-06 11:06:19,042 INFO: 127.0.0.1 - - [06/Apr/2026 11:06:19] "OPTIONS /api/login HTTP/1.1" 200 -
+2026-04-06 11:06:21,159 INFO: 127.0.0.1 - - [06/Apr/2026 11:06:21] "[33mPOST /api/login HTTP/1.1[0m" 404 -
+2026-04-06 11:06:35,480 INFO: 127.0.0.1 - - [06/Apr/2026 11:06:35] "OPTIONS /api/login HTTP/1.1" 200 -
+2026-04-06 11:06:37,741 INFO: 127.0.0.1 - - [06/Apr/2026 11:06:37] "[31m[1mPOST /api/login HTTP/1.1[0m" 401 -
+2026-04-06 11:06:41,391 INFO: 127.0.0.1 - - [06/Apr/2026 11:06:41] "OPTIONS /api/login HTTP/1.1" 200 -
+2026-04-06 11:06:43,621 INFO: 127.0.0.1 - - [06/Apr/2026 11:06:43] "POST /api/login HTTP/1.1" 200 -
+2026-04-06 11:14:18,272 INFO: 127.0.0.1 - - [06/Apr/2026 11:14:18] "OPTIONS /api/register HTTP/1.1" 200 -
+2026-04-06 11:14:20,542 INFO: 127.0.0.1 - - [06/Apr/2026 11:14:20] "[31m[1mPOST /api/register HTTP/1.1[0m" 409 -
+2026-04-06 11:24:45,065 INFO: 127.0.0.1 - - [06/Apr/2026 11:24:45] "OPTIONS /api/register HTTP/1.1" 200 -
+2026-04-06 11:24:48,467 INFO: 127.0.0.1 - - [06/Apr/2026 11:24:48] "[35m[1mPOST /api/register HTTP/1.1[0m" 201 -
+2026-04-06 11:28:26,313 INFO:  * Detected change in 'C:\\Users\\eddym\\ProySI1\\Clinica-odontologica-alba-si1\\backend\\app\\routes\\auth_routes.py', reloading
+2026-04-06 11:28:26,352 INFO:  * Restarting with stat
+2026-04-06 11:28:26,669 WARNING:  * Debugger is active!
+2026-04-06 11:28:26,672 INFO:  * Debugger PIN: 111-423-119
+2026-04-06 11:28:53,639 INFO: 127.0.0.1 - - [06/Apr/2026 11:28:53] "OPTIONS /api/login HTTP/1.1" 200 -
+2026-04-06 11:28:55,766 INFO: 127.0.0.1 - - [06/Apr/2026 11:28:55] "[31m[1mPOST /api/login HTTP/1.1[0m" 401 -
+2026-04-06 11:29:01,226 INFO: 127.0.0.1 - - [06/Apr/2026 11:29:01] "OPTIONS /api/login HTTP/1.1" 200 -
+2026-04-06 11:29:03,447 INFO: 127.0.0.1 - - [06/Apr/2026 11:29:03] "[31m[1mPOST /api/login HTTP/1.1[0m" 401 -
+2026-04-06 11:29:09,986 INFO: 127.0.0.1 - - [06/Apr/2026 11:29:09] "OPTIONS /api/login HTTP/1.1" 200 -
+2026-04-06 11:29:12,234 INFO: 127.0.0.1 - - [06/Apr/2026 11:29:12] "POST /api/login HTTP/1.1" 200 -
+2026-04-06 11:32:18,985 INFO: 127.0.0.1 - - [06/Apr/2026 11:32:18] "OPTIONS /api/register HTTP/1.1" 200 -
+2026-04-06 11:32:22,344 INFO: 127.0.0.1 - - [06/Apr/2026 11:32:22] "[35m[1mPOST /api/register HTTP/1.1[0m" 201 -
+2026-04-06 11:45:06,157 INFO:  * Detected change in 'C:\\Users\\eddym\\ProySI1\\Clinica-odontologica-alba-si1\\backend\\app\\routes\\test_routes.py', reloading
+2026-04-06 11:45:06,193 INFO:  * Restarting with stat
+2026-04-06 11:45:06,497 WARNING:  * Debugger is active!
+2026-04-06 11:45:06,500 INFO:  * Debugger PIN: 111-423-119
+2026-04-06 12:22:31,251 INFO: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-04-06 12:22:31,252 INFO: [33mPress CTRL+C to quit[0m
+2026-04-06 12:22:31,253 INFO:  * Restarting with stat
+2026-04-06 12:22:31,530 WARNING:  * Debugger is active!
+2026-04-06 12:22:31,532 INFO:  * Debugger PIN: 111-423-119
+2026-04-06 12:22:35,039 INFO: 127.0.0.1 - - [06/Apr/2026 12:22:35] "OPTIONS /api/login HTTP/1.1" 200 -
+2026-04-06 12:22:37,451 INFO: 127.0.0.1 - - [06/Apr/2026 12:22:37] "[31m[1mPOST /api/login HTTP/1.1[0m" 401 -
+2026-04-06 12:22:44,073 INFO: 127.0.0.1 - - [06/Apr/2026 12:22:44] "OPTIONS /api/login HTTP/1.1" 200 -
+2026-04-06 12:22:46,311 INFO: 127.0.0.1 - - [06/Apr/2026 12:22:46] "POST /api/login HTTP/1.1" 200 -
+2026-04-06 12:23:29,043 INFO: 127.0.0.1 - - [06/Apr/2026 12:23:29] "OPTIONS /api/login HTTP/1.1" 200 -
+2026-04-06 12:23:31,290 INFO: 127.0.0.1 - - [06/Apr/2026 12:23:31] "POST /api/login HTTP/1.1" 200 -
+2026-04-06 12:26:27,374 INFO: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-04-06 12:26:27,374 INFO: [33mPress CTRL+C to quit[0m
+2026-04-06 12:26:27,375 INFO:  * Restarting with stat
+2026-04-06 12:26:27,649 WARNING:  * Debugger is active!
+2026-04-06 12:26:27,652 INFO:  * Debugger PIN: 111-423-119
+2026-04-06 12:26:56,255 INFO: 127.0.0.1 - - [06/Apr/2026 12:26:56] "OPTIONS /api/login HTTP/1.1" 200 -
+2026-04-06 12:26:58,465 INFO: 127.0.0.1 - - [06/Apr/2026 12:26:58] "POST /api/login HTTP/1.1" 200 -
+2026-04-06 12:34:21,211 INFO: 127.0.0.1 - - [06/Apr/2026 12:34:21] "OPTIONS /api/login HTTP/1.1" 200 -
+2026-04-06 12:34:23,539 INFO: 127.0.0.1 - - [06/Apr/2026 12:34:23] "POST /api/login HTTP/1.1" 200 -
+2026-04-06 12:46:25,786 INFO: 127.0.0.1 - - [06/Apr/2026 12:46:25] "OPTIONS /api/login HTTP/1.1" 200 -
+2026-04-06 12:46:27,941 INFO: 127.0.0.1 - - [06/Apr/2026 12:46:27] "[33mPOST /api/login HTTP/1.1[0m" 404 -
+2026-04-06 12:46:43,613 INFO: 127.0.0.1 - - [06/Apr/2026 12:46:43] "OPTIONS /api/login HTTP/1.1" 200 -
+2026-04-06 12:46:45,782 INFO: 127.0.0.1 - - [06/Apr/2026 12:46:45] "POST /api/login HTTP/1.1" 200 -
+2026-04-06 13:01:46,880 INFO: 127.0.0.1 - - [06/Apr/2026 13:01:46] "OPTIONS /api/login HTTP/1.1" 200 -
+2026-04-06 13:01:49,296 INFO: 127.0.0.1 - - [06/Apr/2026 13:01:49] "POST /api/login HTTP/1.1" 200 -
+2026-04-06 13:02:46,457 INFO: 127.0.0.1 - - [06/Apr/2026 13:02:46] "OPTIONS /api/login HTTP/1.1" 200 -
+2026-04-06 13:02:48,579 INFO: 127.0.0.1 - - [06/Apr/2026 13:02:48] "[33mPOST /api/login HTTP/1.1[0m" 404 -
+2026-04-06 13:02:59,177 INFO: 127.0.0.1 - - [06/Apr/2026 13:02:59] "OPTIONS /api/login HTTP/1.1" 200 -
+2026-04-06 13:03:01,272 INFO: 127.0.0.1 - - [06/Apr/2026 13:03:01] "[33mPOST /api/login HTTP/1.1[0m" 404 -
+2026-04-06 13:03:12,659 INFO: 127.0.0.1 - - [06/Apr/2026 13:03:12] "OPTIONS /api/login HTTP/1.1" 200 -
+2026-04-06 13:03:14,719 INFO: 127.0.0.1 - - [06/Apr/2026 13:03:14] "[31m[1mPOST /api/login HTTP/1.1[0m" 401 -
+2026-04-06 13:03:24,627 INFO: 127.0.0.1 - - [06/Apr/2026 13:03:24] "OPTIONS /api/login HTTP/1.1" 200 -
+2026-04-06 13:03:26,836 INFO: 127.0.0.1 - - [06/Apr/2026 13:03:26] "[31m[1mPOST /api/login HTTP/1.1[0m" 401 -
+2026-04-06 13:03:36,066 INFO: 127.0.0.1 - - [06/Apr/2026 13:03:36] "OPTIONS /api/login HTTP/1.1" 200 -
+2026-04-06 13:03:38,295 INFO: 127.0.0.1 - - [06/Apr/2026 13:03:38] "POST /api/login HTTP/1.1" 200 -
+2026-04-06 13:11:58,585 INFO:  * Detected change in 'C:\\Users\\eddym\\ProySI1\\Clinica-odontologica-alba-si1\\backend\\app\\routes\\auth_routes.py', reloading
+2026-04-06 13:11:58,641 INFO:  * Restarting with stat
+2026-04-06 13:11:59,318 WARNING:  * Debugger is active!
+2026-04-06 13:11:59,322 INFO:  * Debugger PIN: 111-423-119
+2026-04-06 13:45:02,430 INFO: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-04-06 13:45:02,430 INFO: [33mPress CTRL+C to quit[0m
+2026-04-06 13:45:02,431 INFO:  * Restarting with stat
+2026-04-06 13:45:02,711 WARNING:  * Debugger is active!
+2026-04-06 13:45:02,714 INFO:  * Debugger PIN: 111-423-119
+2026-04-06 14:20:14,741 INFO: 127.0.0.1 - - [06/Apr/2026 14:20:14] "OPTIONS /api/login HTTP/1.1" 200 -
+2026-04-06 14:20:17,064 INFO: 127.0.0.1 - - [06/Apr/2026 14:20:17] "POST /api/login HTTP/1.1" 200 -
+2026-04-06 14:25:31,874 INFO: 127.0.0.1 - - [06/Apr/2026 14:25:31] "OPTIONS /api/login HTTP/1.1" 200 -
+2026-04-06 14:25:34,083 INFO: 127.0.0.1 - - [06/Apr/2026 14:25:34] "[33mPOST /api/login HTTP/1.1[0m" 404 -
+2026-04-06 14:25:45,097 INFO: 127.0.0.1 - - [06/Apr/2026 14:25:45] "OPTIONS /api/login HTTP/1.1" 200 -
+2026-04-06 14:25:47,321 INFO: 127.0.0.1 - - [06/Apr/2026 14:25:47] "POST /api/login HTTP/1.1" 200 -
+2026-04-06 14:36:07,167 INFO: 127.0.0.1 - - [06/Apr/2026 14:36:07] "OPTIONS /api/login HTTP/1.1" 200 -
+2026-04-06 14:36:09,424 INFO: 127.0.0.1 - - [06/Apr/2026 14:36:09] "POST /api/login HTTP/1.1" 200 -
+2026-04-06 14:37:39,219 INFO: 127.0.0.1 - - [06/Apr/2026 14:37:39] "OPTIONS /api/login HTTP/1.1" 200 -
+2026-04-06 14:37:41,276 INFO: 127.0.0.1 - - [06/Apr/2026 14:37:41] "[33mPOST /api/login HTTP/1.1[0m" 404 -
+2026-04-06 14:37:45,795 INFO: 127.0.0.1 - - [06/Apr/2026 14:37:45] "OPTIONS /api/login HTTP/1.1" 200 -
+2026-04-06 14:37:47,842 INFO: 127.0.0.1 - - [06/Apr/2026 14:37:47] "[33mPOST /api/login HTTP/1.1[0m" 404 -
+2026-04-06 14:37:54,139 INFO: 127.0.0.1 - - [06/Apr/2026 14:37:54] "OPTIONS /api/login HTTP/1.1" 200 -
+2026-04-06 14:37:56,296 INFO: 127.0.0.1 - - [06/Apr/2026 14:37:56] "POST /api/login HTTP/1.1" 200 -
+2026-04-07 22:37:11,192 INFO: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-04-07 22:37:11,192 INFO: [33mPress CTRL+C to quit[0m
+2026-04-07 22:37:11,194 INFO:  * Restarting with stat
+2026-04-07 22:37:11,576 WARNING:  * Debugger is active!
+2026-04-07 22:37:11,579 INFO:  * Debugger PIN: 819-122-579
+2026-04-07 22:43:39,373 INFO: 127.0.0.1 - - [07/Apr/2026 22:43:39] "OPTIONS /api/login HTTP/1.1" 200 -
+2026-04-07 22:43:41,385 INFO: 127.0.0.1 - - [07/Apr/2026 22:43:41] "POST /api/login HTTP/1.1" 200 -
+2026-04-07 23:24:16,501 INFO: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-04-07 23:24:16,501 INFO: [33mPress CTRL+C to quit[0m
+2026-04-07 23:24:16,502 INFO:  * Restarting with stat
+2026-04-07 23:24:16,781 WARNING:  * Debugger is active!
+2026-04-07 23:24:16,783 INFO:  * Debugger PIN: 819-122-579
+2026-04-07 23:25:13,794 INFO: 127.0.0.1 - - [07/Apr/2026 23:25:13] "OPTIONS /api/register HTTP/1.1" 200 -
+2026-04-07 23:25:16,704 INFO: 127.0.0.1 - - [07/Apr/2026 23:25:16] "[35m[1mPOST /api/register HTTP/1.1[0m" 201 -
+2026-04-07 23:28:33,453 INFO: 127.0.0.1 - - [07/Apr/2026 23:28:33] "OPTIONS /api/register HTTP/1.1" 200 -
+2026-04-07 23:28:36,370 INFO: 127.0.0.1 - - [07/Apr/2026 23:28:36] "[35m[1mPOST /api/register HTTP/1.1[0m" 201 -
+2026-04-07 23:51:38,623 INFO: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-04-07 23:51:38,624 INFO: [33mPress CTRL+C to quit[0m
+2026-04-07 23:51:38,625 INFO:  * Restarting with stat
+2026-04-07 23:51:38,899 WARNING:  * Debugger is active!
+2026-04-07 23:51:38,902 INFO:  * Debugger PIN: 819-122-579
+2026-04-07 23:51:58,356 INFO: 127.0.0.1 - - [07/Apr/2026 23:51:58] "OPTIONS /api/login HTTP/1.1" 200 -
+2026-04-07 23:52:00,267 INFO: 127.0.0.1 - - [07/Apr/2026 23:52:00] "POST /api/login HTTP/1.1" 200 -
+2026-04-08 01:29:34,916 INFO:  * Detected change in 'C:\\Users\\eddym\\ProySI1\\Clinica-odontologica-alba-si1\\backend\\app\\routes\\auth_routes.py', reloading
+2026-04-08 01:29:34,955 INFO:  * Detected change in 'C:\\Users\\eddym\\ProySI1\\Clinica-odontologica-alba-si1\\backend\\app\\routes\\auth_routes.py', reloading
+2026-04-08 01:29:34,975 INFO:  * Detected change in 'C:\\Users\\eddym\\ProySI1\\Clinica-odontologica-alba-si1\\backend\\app\\routes\\auth_routes.py', reloading
+2026-04-08 01:29:35,000 INFO:  * Restarting with stat
+2026-04-08 01:29:35,036 INFO:  * Restarting with stat
+2026-04-08 01:29:35,069 INFO:  * Restarting with stat
+2026-04-08 01:29:35,409 WARNING:  * Debugger is active!
+2026-04-08 01:29:35,409 WARNING:  * Debugger is active!
+2026-04-08 01:29:35,413 INFO:  * Debugger PIN: 819-122-579
+2026-04-08 01:29:35,413 INFO:  * Debugger PIN: 819-122-579
+2026-04-08 01:29:35,443 WARNING:  * Debugger is active!
+2026-04-08 01:29:35,446 INFO:  * Debugger PIN: 819-122-579
+2026-04-08 01:29:53,967 INFO:  * Detected change in 'C:\\Users\\eddym\\ProySI1\\Clinica-odontologica-alba-si1\\backend\\run.py', reloading
+2026-04-08 01:29:54,021 INFO:  * Detected change in 'C:\\Users\\eddym\\ProySI1\\Clinica-odontologica-alba-si1\\backend\\run.py', reloading
+2026-04-08 01:29:54,026 INFO:  * Restarting with stat
+2026-04-08 01:29:54,082 INFO:  * Restarting with stat
+2026-04-08 01:29:58,127 INFO:  * Restarting with stat
+2026-04-08 01:29:58,136 INFO:  * Restarting with stat

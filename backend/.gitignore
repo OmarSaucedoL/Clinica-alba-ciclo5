@@ -1,0 +1,13 @@
+#PYTHON CACHE
+__pycache__/
+*.py[cod]
+*$py.class
+
+#VARIABLES DE ENTORNO
+.env
+.env.*
+!.env.example
+
+#ARCHIVOS VSCODE
+.vscode/
+.history/

@@ -1,0 +1,31 @@
+#PYTHON CACHE
+__pycache__/
+*.py[cod]
+*$py.class
+
+#VARIABLES DE ENTORNO
+.env
+.env.*
+!.env.example
+
+#ARCHIVOS EDITORES
+.vscode/
+.idea/
+*.swp
+*.swo
+
+#NODE
+/node_modules/
+/package.json
+/package-lock.json
+/yarn.lock
+/pnpm-lock.yaml
+
+#SISTEMA OPERATIVO
+.DS_Store
+Thumbs.db
+
+# ARCHIVOS LOCALES / RESPALDOS
+extracted_fks.sql
+extracted.sql
+respaldo
