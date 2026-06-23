@@ -33,7 +33,7 @@ def _get_log_context():
 @consultorios_routes.route('/api/consultorios', methods=['GET'])
 def get_consultorios():
     try:
-        query = f"SELECT id_sala, nombre, tipo_sala, estado_sala FROM {Config.SCHEMA}.t_sala ORDER BY id_sala ASC"
+        query = f"SELECT id_sala, nombre, tipo_sala, estado_sala FROM {Config.SCHEMA}.t_sala ORDER BY nombre ASC"
         results = db.execute_query(query, fetchall=True)
 
         salas = [{

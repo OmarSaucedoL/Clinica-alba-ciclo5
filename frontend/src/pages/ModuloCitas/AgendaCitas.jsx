@@ -3,7 +3,7 @@ import {
   ESTADO_CITA,
   ESTADO_CITA_LABELS,
   ESTADO_CITA_COLORS,
-} from "../../../constants/enums";
+} from "../../constants/enums";
 
 const API_URL = import.meta.env.VITE_API_URL;
 

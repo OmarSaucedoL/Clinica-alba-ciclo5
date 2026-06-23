@@ -4,11 +4,11 @@ import {
   ESTADO_CITA,
   ESTADO_CITA_LABELS,
   ESTADO_CITA_COLORS,
-} from "../../../constants/enums";
-import MostrarCitaCard from "./detalles_cita/MostrarCitaCard";
-import EditarCitaForm from "./detalles_cita/EditarCitaForm";
-import TabServiciosCita from "./detalles_cita/TabServiciosCita";
-import TabMaterialesCita from "./detalles_cita/TabMaterialesCita";
+} from "../../constants/enums";
+import MostrarCitaCard from "../../components/UIs/citas/detalles_cita/MostrarCitaCard";
+import EditarCitaForm from "../../components/UIs/citas/detalles_cita/EditarCitaForm";
+import TabServiciosCita from "../../components/UIs/citas/detalles_cita/TabServiciosCita";
+import TabMaterialesCita from "../../components/UIs/citas/detalles_cita/TabMaterialesCita";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -772,7 +772,7 @@ export default function DetallesCitas({
                     setSelectedDienteCodigo={setSelectedDienteCodigo}
                     materialObservacion={materialObservacion}
                     setMaterialObservacion={setMaterialObservacion}
-                    serviciosCita={serviciosCita}
+                    catalogoServicios={catalogoServicios}
                     catalogoDientes={catalogoDientes}
                     addingMaterial={addingMaterial}
                     handleAddMaterial={handleAddMaterial}

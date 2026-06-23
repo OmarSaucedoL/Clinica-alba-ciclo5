@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams, useNavigate, Link } from 'react-router-dom';
-import logo from '../assets/LOGO.png';
-import fondoWelcome from '../assets/Fondo_Welcome.jpg';
+import logo from '../../assets/LOGO.png';
+import fondoWelcome from '../../assets/Fondo_Welcome.jpg';
 
 const API_URL = import.meta.env.VITE_API_URL;
 

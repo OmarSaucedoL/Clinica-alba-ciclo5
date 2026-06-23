@@ -3,13 +3,13 @@ import { useEffect } from "react";
 import { despertarBackend } from "./services/api";
 import ProtectedRoute from "./components/ProtectedRoute";
 
-import Login from "./pages/Login";
+import Login from "./pages/ModuloUsuarios/Login";
 import Welcome from "./pages/Welcome";
-import Register from "./pages/Register";
-import Panel from "./pages/Panel"; 
+import Register from "./pages/ModuloUsuarios/Register";
+import Panel from "./pages/ModuloUsuarios/Panel"; 
 import Especialidad from './pages/Especialidad';
-import ForgotPassword from './pages/ForgotPassword';
-import ResetPassword from './pages/ResetPassword';
+import ForgotPassword from './pages/ModuloUsuarios/ForgotPassword';
+import ResetPassword from './pages/ModuloUsuarios/ResetPassword';
 
 export default function App() {
   useEffect(() => { despertarBackend(); }, []);

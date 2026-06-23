@@ -189,7 +189,7 @@ def asignar_procedimientos_todos():
 @procedimientos_routes_routes.route('/api/procedimientos/quitar-todos', methods=['POST'])
 @permission_required("asignar_procedimientos")
 def quitar_procedimientos_todos():
-    """Quita un procedimiento a todos los odontólogos"""
+    
     data = request.get_json() or {}
     id_procedimiento = data.get('id_procedimiento')
     

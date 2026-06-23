@@ -230,15 +230,7 @@ export default function DetallesConsultorio({ consultorio, onClose, onRefresh })
             </form>
           ) : (
             <div className="space-y-6">
-              <div className="grid grid-cols-2 gap-6">
-                <div className="bg-gray-50 p-6 rounded-[2rem] border border-gray-100">
-                  <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-1">
-                    ID Consultorio
-                  </p>
-                  <p className="text-xl font-black text-[#2A5C4D]">
-                    #{consultorio.id_sala}
-                  </p>
-                </div>
+              <div className="grid grid-cols-1 gap-6">
                 <div className="bg-gray-50 p-6 rounded-[2rem] border border-gray-100">
                   <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-1">
                     Nombre

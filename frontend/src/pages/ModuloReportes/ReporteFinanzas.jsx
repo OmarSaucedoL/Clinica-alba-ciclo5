@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { exportToExcel, exportToWord } from "../../../services/exporter";
-import AsistenteVoz from "./AsistenteVoz";
+import { exportToExcel, exportToWord } from "../../services/exporter";
+import AsistenteVoz from "../../components/UIs/reportes/AsistenteVoz";
 
 export default function ReporteFinanzas({ dataMaster, user, setActiveMenu }) {
   const [activeSubTab, setActiveSubTab] = useState("resumen");

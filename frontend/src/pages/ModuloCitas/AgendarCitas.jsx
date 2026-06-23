@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo, useRef } from "react";
-import FormularioPaciente from "../../../pages/RegisterPatient";
+import FormularioPaciente from "../RegisterPatient";
 
 const API_URL = import.meta.env.VITE_API_URL;
 const ROLES = { ODONTOLOGO: 2 };
@@ -52,7 +52,15 @@ export default function AgendarCitas({
   const abortSlots = useRef(null);
   const hoy = new Date().toISOString().split("T")[0];
 
-  const salas = (dataMaster?.salas || []).filter(s => s.estado_sala === 'ACTIVA' || s.estado_sala === 'DISPONIBLE');
+  const salas = (dataMaster?.salas || []).filter(s => {
+    const isStateOk = s.estado_sala === 'ACTIVA' || s.estado_sala === 'DISPONIBLE';
+    if (!isStateOk) return false;
+    // Si no es staff (es decir, es paciente), solo mostramos las salas de tipo GENERAL
+    if (!isStaff) {
+      return s.tipo_sala?.toUpperCase() === 'GENERAL';
+    }
+    return true;
+  });
 
   useEffect(() => {
     const source = pacientes.length > 0 ? pacientes : dataMaster?.pacientes;

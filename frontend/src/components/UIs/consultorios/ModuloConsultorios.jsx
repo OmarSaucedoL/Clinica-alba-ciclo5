@@ -105,12 +105,7 @@ export default function ModuloConsultorios({ dataMaster, onRefresh }) {
           <table className="min-w-full divide-y divide-gray-50">
             <thead className="bg-emerald-50/50">
               <tr>
-                <th
-                  scope="col"
-                  className="px-6 py-4 text-left text-[10px] font-black text-[#148F77] uppercase tracking-widest"
-                >
-                  ID
-                </th>
+
                 <th
                   scope="col"
                   className="px-6 py-4 text-left text-[10px] font-black text-[#148F77] uppercase tracking-widest"
@@ -146,9 +141,7 @@ export default function ModuloConsultorios({ dataMaster, onRefresh }) {
                       index % 2 === 0 ? "bg-white" : "bg-gray-50/30"
                     }`}
                   >
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-500">
-                      {c.id_sala}
-                    </td>
+
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-[#2A5C4D]">
                       {c.nombre}
                     </td>
@@ -186,7 +179,7 @@ export default function ModuloConsultorios({ dataMaster, onRefresh }) {
               ) : (
                 <tr>
                   <td
-                    colSpan="5"
+                    colSpan="4"
                     className="px-6 py-16 text-center text-gray-400 text-sm font-medium"
                   >
                     <div className="flex flex-col items-center justify-center gap-2">

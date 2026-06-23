@@ -5,29 +5,29 @@ import { useAuthStore } from "../../store/auth_store";
 import Sidebar from "../../components/layout/Sidebar";
 
 import DashboardAdmin from "../../components/dashboards/DashboardAdmin";
-import ModuloCitas from "../../components/UIs/citas/ModuloCitas";
+import ModuloCitas from "../ModuloCitas/ModuloCitas";
 import DashboardOdontologo from "../../components/dashboards/DashboardOdontologo";
 import DashboardRecepcionista from "../../components/dashboards/DashboardRecepcionista";
 import DashboardPaciente from "../../components/dashboards/DashboardPaciente";
 
 import CambioPasswordUI from "./CambioPassword";
-import AgendarCitas from "../../components/UIs/citas/AgendarCitas";
-import AgendaCitas from "../../components/UIs/citas/AgendaCitas";
-import DetallesCitas from "../../components/UIs/citas/DetallesCitas";
-import ModuloPacientes from "../../components/UIs/ModuloPacientes";
+import AgendarCitas from "../ModuloCitas/AgendarCitas";
+import AgendaCitas from "../ModuloCitas/AgendaCitas";
+import DetallesCitas from "../ModuloCitas/DetallesCitas";
+import ModuloPacientes from "../ModuloPacientes/ModuloPacientes";
 import Bitacora from "../ModuloAdministrativo/Bitacora";
-import ModuloUsuarios from "../../components/UIs/ModuloUsuarios";
+import ModuloUsuarios from "../ModuloAdministrativo/ModuloUsuarios";
 import ModuloInventario from "../ModuloInventario/ModuloInventario";
 import RegistrarEntradas from "../ModuloInventario/RegistrarEntradas";
 import RegistrarSalidas from "../ModuloInventario/RegistrarSalidas"; // <-- Adición exclusiva: Importamos el componente del CU27
 import AjustarInventario from "../ModuloInventario/AjustarInventario"; // <-- Adición exclusiva: Importamos el componente del CU28
-import ModuloPersonal from "../../components/UIs/ModuloPersonal";
+import ModuloPersonal from "../ModuloAdministrativo/ModuloPersonal";
 import ModuloProcedimientos from "../../components/UIs/procedimientos/ModuloProcedimientos";
-import ModuloPagos from "../../components/UIs/ModuloPagos";
-import ReportePacientes from "../../components/UIs/reportes/ReportePacientes";
-import ReporteFinanzas from "../../components/UIs/reportes/ReporteFinanzas";
-import ReporteAdministracion from "../../components/UIs/reportes/ReporteAdministracion";
-import ReporteInventario from "../../components/UIs/reportes/ReporteInventario";
+import ModuloPagos from "../ModuloFinanciero/ModuloPagos";
+import ReportePacientes from "../ModuloReportes/ReportePacientes";
+import ReporteFinanzas from "../ModuloReportes/ReporteFinanzas";
+import ReporteAdministracion from "../ModuloReportes/ReporteAdministracion";
+import ReporteInventario from "../ModuloReportes/ReporteInventario";
 import ReporteCitas from "../ModuloReportes/ReporteCitas";
 import ModuloConsultorios from "../../components/UIs/consultorios/ModuloConsultorios";
 import ModuloServicios from "../../components/UIs/servicios/ModuloServicios";

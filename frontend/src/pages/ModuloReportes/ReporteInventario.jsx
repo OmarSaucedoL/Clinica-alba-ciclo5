@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { exportToExcel, exportToWord } from "../../../services/exporter";
-import AsistenteVoz from "./AsistenteVoz";
+import { exportToExcel, exportToWord } from "../../services/exporter";
+import AsistenteVoz from "../../components/UIs/reportes/AsistenteVoz";
 
 export default function ReporteInventario({ dataMaster, user, setActiveMenu }) {
   const API_URL = import.meta.env.VITE_API_URL;
