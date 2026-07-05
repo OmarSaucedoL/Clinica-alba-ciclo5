@@ -33,6 +33,7 @@ import ModuloConsultorios from "../../components/UIs/consultorios/ModuloConsulto
 import ModuloServicios from "../../components/UIs/servicios/ModuloServicios";
 import ModuloOdontograma from "../ModuloPacientes/ModuloOdontograma";
 import AtajoGlobal from "../../components/UIs/AtajoGlobal/AtajoGlobal";
+import ModuloAsistencia from "../ModuloAdministrativo/ModuloAsistencia";
 const API_URL = import.meta.env.VITE_API_URL;
 const ROLES = {
   ADMINISTRADOR: 1,
@@ -61,6 +62,39 @@ export default function Panel() {
   const [originalCitaData, setOriginalCitaData] = useState(null);
   const [returnToView, setReturnToView] = useState(null);
   const [showAgendaPersonalState, setShowAgendaPersonalState] = useState(false);
+  const [asistenciaToast, setAsistenciaToast] = useState(null);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const token = params.get("checkin_token");
+    if (token) {
+      // Limpiar de la URL sin recargar
+      window.history.replaceState({}, document.title, window.location.pathname);
+      
+      const registrarCheckin = async () => {
+        try {
+          const res = await fetch(`${API_URL}/asistencia/marcar`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+            body: JSON.stringify({ token }),
+          });
+          const data = await res.json();
+          if (data.success) {
+            setAsistenciaToast({ success: true, message: data.message });
+          } else {
+            setAsistenciaToast({ success: false, message: data.message || "Error al registrar asistencia." });
+          }
+        } catch (e) {
+          setAsistenciaToast({ success: false, message: "Error al registrar asistencia por red." });
+        }
+      };
+      
+      setTimeout(registrarCheckin, 500);
+    }
+  }, []);
   const [dataMaster, setDataMaster] = useState({
     procedimientos: [],
     odontologos: [],
@@ -493,6 +527,11 @@ export default function Panel() {
               />
             )}
 
+          {/* ASISTENCIA */}
+          {activeMenu === "Asistencia" && userRolId < 5 && (
+            <ModuloAsistencia userRolId={userRolId} user={user} />
+          )}
+
           {/* MÓDULO EN DESARROLLO */}
           {![
             "Panel de Control",
@@ -519,6 +558,7 @@ export default function Panel() {
             "Reporte Inventario",
             "Reporte Finanzas",
             "Odontograma",
+            "Asistencia",
           ].includes(activeMenu) && (
             <div className="h-full flex flex-col items-center justify-center opacity-20 text-center">
               <p className="text-4xl md:text-6xl mb-4">...</p>
@@ -573,6 +613,42 @@ export default function Panel() {
           }
         }}
       />
+
+      {/* MODAL DE RESULTADO DE ASISTENCIA (POR ESCANEO DIRECTO DESDE CÁMARA CELULAR) */}
+      {asistenciaToast && (
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[200] flex items-center justify-center p-4 animate-fade-in">
+          <div className="bg-white rounded-[2.5rem] p-8 w-full max-w-sm shadow-2xl border border-gray-100 text-center space-y-6">
+            <div className={`p-6 rounded-full mx-auto w-fit ${asistenciaToast.success ? "bg-emerald-50 text-[#148F77]" : "bg-rose-50 text-rose-600"}`}>
+              {asistenciaToast.success ? (
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              ) : (
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+              )}
+            </div>
+            <div>
+              <h4 className="text-lg font-black text-[#2A5C4D] italic uppercase">
+                {asistenciaToast.success ? "¡Registro Exitoso!" : "Error de Registro"}
+              </h4>
+              <p className="text-gray-500 text-[10px] font-bold mt-1 uppercase tracking-wider">
+                Control de Asistencia
+              </p>
+              <p className="text-xs text-gray-600 font-semibold mt-3 lowercase first-letter:uppercase">
+                {asistenciaToast.message}
+              </p>
+            </div>
+            <button
+              onClick={() => setAsistenciaToast(null)}
+              className="w-full py-4 bg-[#148F77] hover:bg-[#117A65] text-white rounded-2xl font-black text-xs uppercase tracking-widest transition-all cursor-pointer shadow-lg active:scale-95"
+            >
+              Cerrar
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

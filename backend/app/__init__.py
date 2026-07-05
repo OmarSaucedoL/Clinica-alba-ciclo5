@@ -18,7 +18,7 @@ def create_app():
     # Inicializar mail
     mail.init_app(app)
     
-    from .routes import main_routes, auth_routes, citas_routes, usuario_routes, paciente_routes, inventario_routes, personal_routes, procedimientos_routes_routes, finanzas_routes, consultorios_routes, servicios_routes, reportes_routes, odontograma_routes
+    from .routes import main_routes, auth_routes, citas_routes, usuario_routes, paciente_routes, inventario_routes, personal_routes, procedimientos_routes_routes, finanzas_routes, consultorios_routes, servicios_routes, reportes_routes, odontograma_routes, asistencia_routes
     # Registro de Blueprints
     app.register_blueprint(main_routes)
     app.register_blueprint(auth_routes)
@@ -33,6 +33,7 @@ def create_app():
     app.register_blueprint(odontograma_routes)
     app.register_blueprint(finanzas_routes)
     app.register_blueprint(reportes_routes)
+    app.register_blueprint(asistencia_routes)
     
     # 2. CONFIGURACIÓN DINÁMICA DE CORS
     # Agrega aquí tu dominio de producción una vez lo tengas

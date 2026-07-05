@@ -11,4 +11,5 @@ from .servicios_routes import servicios_routes
 from .finanzas_routes import finanzas_routes
 from .reportes_routes import reportes_routes
 from .odontograma_routes import odontograma_routes
+from .asistencia_routes import asistencia_routes
 

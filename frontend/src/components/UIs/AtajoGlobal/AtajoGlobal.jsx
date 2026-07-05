@@ -92,6 +92,10 @@ export default function AtajoGlobal({
     ];
     if (rol < 5)
       opts.push(
+        add("Asistencia", "Control de Asistencia de Personal", "Navegación"),
+      );
+    if (rol === 1)
+      opts.push(
         add(
           "Procedimientos",
           "Gestionar Procedimientos Clínicos",

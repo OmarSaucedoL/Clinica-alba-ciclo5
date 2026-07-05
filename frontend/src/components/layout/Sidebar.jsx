@@ -56,6 +56,7 @@ export default function Sidebar({
     pagos: true,
     cuenta: true, 
     reportes: false,
+    asistencia: false,
   });
 
   const toggleMenu = (menu) => {
@@ -229,9 +230,9 @@ export default function Sidebar({
             {openMenus.citas && (
               <div className="mt-2 space-y-2">
                 <MenuButton title="Citas" />
-                {Number(userRolId) < 5 && <MenuButton title="Procedimientos" />}
-                {Number(userRolId) < 5 && <MenuButton title="Servicios" />}
-                {Number(userRolId) < 5 && <MenuButton title="Consultorios" />}
+                {Number(userRolId) === 1 && <MenuButton title="Procedimientos" />}
+                {Number(userRolId) === 1 && <MenuButton title="Servicios" />}
+                {Number(userRolId) === 1 && <MenuButton title="Consultorios" />}
 
               </div>
             )}
@@ -370,6 +371,27 @@ export default function Sidebar({
                       <MenuButton title="Reporte Finanzas" label="Finanzas" />
                     </>
                   )}
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* ASISTENCIA (Visible para personal: administradores, odontólogos, asistentes, recepcionistas) */}
+          {Number(userRolId) < 5 && (
+            <div>
+              <button
+                onClick={() => toggleMenu("asistencia")}
+                className="w-full flex items-center justify-between px-3 py-2 text-[10px] font-black uppercase tracking-widest text-gray-400"
+              >
+                <span>Asistencia</span>
+                <span className="text-lg">
+                  {openMenus.asistencia ? "−" : "+"}
+                </span>
+              </button>
+
+              {openMenus.asistencia && (
+                <div className="mt-2 space-y-2">
+                  <MenuButton title="Asistencia" label="Control de Asistencia" />
                 </div>
               )}
             </div>
