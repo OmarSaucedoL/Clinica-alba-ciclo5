@@ -32,6 +32,7 @@ import ReporteCitas from "../ModuloReportes/ReporteCitas";
 import ModuloConsultorios from "../../components/UIs/consultorios/ModuloConsultorios";
 import ModuloServicios from "../../components/UIs/servicios/ModuloServicios";
 import ModuloOdontograma from "../ModuloPacientes/ModuloOdontograma";
+import AtajoGlobal from "../../components/UIs/AtajoGlobal/AtajoGlobal";
 const API_URL = import.meta.env.VITE_API_URL;
 const ROLES = {
   ADMINISTRADOR: 1,
@@ -49,6 +50,12 @@ export default function Panel() {
 
   const [activeMenu, setActiveMenu] = useState("Panel de Control");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isAtajoOpen, setIsAtajoOpen] = useState(false);
+  const [selectedPatientGlobal, setSelectedPatientGlobal] = useState(null);
+  const [selectedPatientCitasGlobal, setSelectedPatientCitasGlobal] = useState(null);
+  const [selectedOdontologoGlobal, setSelectedOdontologoGlobal] = useState(null);
+  const [selectedUserGlobal, setSelectedUserGlobal] = useState(null);
+  const [selectedStaffGlobal, setSelectedStaffGlobal] = useState(null);
   const [showModalCita, setShowModalCita] = useState(false);
   const [selectedCitaId, setSelectedCitaId] = useState(null);
   const [originalCitaData, setOriginalCitaData] = useState(null);
@@ -261,6 +268,34 @@ export default function Panel() {
               <span className="text-[#148F77] font-black">{activeMenu}</span>
             </div>
           </div>
+
+          {/* BOTÓN DISPARADOR DE ATAJO GLOBAL */}
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => setIsAtajoOpen(true)}
+              className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-50 hover:bg-gray-100/70 border border-gray-100 text-gray-400 hover:text-gray-600 text-xs font-bold transition-all shadow-sm active:scale-95 cursor-pointer"
+              title="Buscar en la clínica (Ctrl + K)"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-3.5 w-3.5 text-gray-400"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2.5}
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
+              </svg>
+              <span className="hidden sm:inline">Buscar...</span>
+              <kbd className="hidden md:inline-block px-1.5 py-0.5 bg-white border border-gray-200/80 rounded text-[8px] font-mono text-gray-400 shadow-sm ml-1.5">
+                Ctrl + K
+              </kbd>
+            </button>
+          </div>
         </header>
 
         <div className="flex-1 overflow-y-auto p-4 md:p-10">
@@ -295,9 +330,13 @@ export default function Panel() {
               />
             ))}
 
-          {/* GESTIÓN DE USUARIOS */}
           {activeMenu === "Usuarios y Roles" &&
-            userRolId === ROLES.ADMINISTRADOR && <ModuloUsuarios />}
+            userRolId === ROLES.ADMINISTRADOR && (
+              <ModuloUsuarios
+                defaultUsuario={selectedUserGlobal}
+                onClearDefaultUsuario={() => setSelectedUserGlobal(null)}
+              />
+            )}
 
           {/* BITÁCORA */}
           {activeMenu === "Bitácora" && userRolId === ROLES.ADMINISTRADOR && (
@@ -305,7 +344,12 @@ export default function Panel() {
           )}
 
           {/* PACIENTES */}
-          {activeMenu === "Pacientes" && <ModuloPacientes />}
+          {activeMenu === "Pacientes" && (
+            <ModuloPacientes
+              defaultPaciente={selectedPatientGlobal}
+              onClearDefaultPaciente={() => setSelectedPatientGlobal(null)}
+            />
+          )}
           {activeMenu === "Odontograma" && (
   <ModuloOdontograma />
 )}
@@ -334,10 +378,13 @@ export default function Panel() {
 
           {/* CONSULTAR CITAS PAGE */}
           {activeMenu === "Consultar Cita" && (
-            <AgendaCitas
+             <AgendaCitas
               onClose={() => setActiveMenu("Citas")}
               dataMaster={dataMaster}
               user={user}
+              defaultOdontologoId={selectedOdontologoGlobal}
+              defaultPacienteId={selectedPatientCitasGlobal?.id_paciente || selectedPatientCitasGlobal?.id || null}
+              defaultPacienteNombre={selectedPatientCitasGlobal?.nombre || null}
               onVerDetalles={(cita) => {
                 setSelectedCitaId(cita.id_cita);
                 setOriginalCitaData(cita);
@@ -438,9 +485,13 @@ export default function Panel() {
           {/* SERVICIOS */}
           {activeMenu === "Servicios" && userRolId < 5 && <ModuloServicios />}
 
-          {/* PERSONAL */}
           {activeMenu === "Gestión de Personal" &&
-            userRolId === ROLES.ADMINISTRADOR && <ModuloPersonal />}
+            userRolId === ROLES.ADMINISTRADOR && (
+              <ModuloPersonal
+                defaultPersonal={selectedStaffGlobal}
+                onClearDefaultPersonal={() => setSelectedStaffGlobal(null)}
+              />
+            )}
 
           {/* MÓDULO EN DESARROLLO */}
           {![
@@ -489,6 +540,39 @@ export default function Panel() {
           onRefresh={() => fetchTodo()}
         />
       )}
+
+      {/* ATAJO GLOBAL (COMMAND PALETTE) */}
+      <AtajoGlobal
+        isOpen={isAtajoOpen}
+        setIsOpen={setIsAtajoOpen}
+        activeMenu={activeMenu}
+        setActiveMenu={setActiveMenu}
+        userRolId={userRolId}
+        dataMaster={dataMaster}
+        onSelectPatient={(paciente) => {
+          setSelectedPatientGlobal(paciente);
+          setSelectedPatientCitasGlobal(null);
+          setActiveMenu("Pacientes");
+        }}
+        onSelectPatientCitas={(paciente) => {
+          setSelectedPatientCitasGlobal(paciente);
+          setSelectedOdontologoGlobal(null);
+          setActiveMenu("Consultar Cita");
+        }}
+        onSelectStaff={(staff, action) => {
+          if (action === "citas") {
+            setSelectedOdontologoGlobal(staff.id_personal);
+            setSelectedPatientCitasGlobal(null);
+            setActiveMenu("Consultar Cita");
+          } else if (action === "personal") {
+            setSelectedStaffGlobal(staff);
+            setActiveMenu("Gestión de Personal");
+          } else if (action === "usuario") {
+            setSelectedUserGlobal(staff);
+            setActiveMenu("Usuarios y Roles");
+          }
+        }}
+      />
     </div>
   );
 }

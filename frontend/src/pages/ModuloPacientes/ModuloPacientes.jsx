@@ -8,7 +8,7 @@ import HistorialClinico from './HistorialClinico';
 const API_URL = import.meta.env.VITE_API_URL;
 
 
-export default function ModuloPacientes() {
+export default function ModuloPacientes({ defaultPaciente, onClearDefaultPaciente }) {
 
   const [pacientes, setPacientes] = useState([]);
 
@@ -83,6 +83,20 @@ const verHistorial = async (paciente) => {
   }
 
 };
+
+  useEffect(() => {
+    if (defaultPaciente) {
+      const formattedPaciente = {
+        ...defaultPaciente,
+        id: defaultPaciente.id || defaultPaciente.id_paciente
+      };
+      verHistorial(formattedPaciente);
+      if (onClearDefaultPaciente) {
+        onClearDefaultPaciente();
+      }
+    }
+  }, [defaultPaciente]);
+
 const recargarHistorial = async (idPaciente) => {
 
   try {

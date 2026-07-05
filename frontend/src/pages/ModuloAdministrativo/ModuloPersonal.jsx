@@ -5,7 +5,7 @@ import FormEditPersonal from "./FormEditPersonal";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-export default function ModuloPersonal() {
+export default function ModuloPersonal({ defaultPersonal, onClearDefaultPersonal }) {
 
   const token = localStorage.getItem("token");
 
@@ -106,6 +106,26 @@ export default function ModuloPersonal() {
     fetchContratos();
 
   }, []);
+
+  useEffect(() => {
+    if (defaultPersonal) {
+      const found = personal.find(
+        (p) =>
+          p.id_personal === defaultPersonal.id_personal ||
+          p.id === defaultPersonal.id_personal
+      );
+      if (found) {
+        setSelectedPersonal(found);
+        setShowEdit(true);
+      } else {
+        setSelectedPersonal(defaultPersonal);
+        setShowEdit(true);
+      }
+      if (onClearDefaultPersonal) {
+        onClearDefaultPersonal();
+      }
+    }
+  }, [defaultPersonal, personal]);
 
   // =========================================
   // FILTRO

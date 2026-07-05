@@ -6,7 +6,7 @@ import FormEditUsuarioModal from "./FormEditUsuario";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-export default function ModuloUsuarios() {
+export default function ModuloUsuarios({ defaultUsuario, onClearDefaultUsuario }) {
 
   const token = localStorage.getItem("token");
 
@@ -92,6 +92,25 @@ export default function ModuloUsuarios() {
     fetchRoles();
 
   }, []);
+
+  useEffect(() => {
+    if (defaultUsuario) {
+      const found = usuarios.find(
+        (u) =>
+          u.id_usuario === defaultUsuario.id_usuario ||
+          u.id === defaultUsuario.id_usuario ||
+          (defaultUsuario.id_personal && u.id_personal === defaultUsuario.id_personal)
+      );
+      if (found) {
+        setUserEdit(found);
+      } else {
+        setUserEdit(defaultUsuario);
+      }
+      if (onClearDefaultUsuario) {
+        onClearDefaultUsuario();
+      }
+    }
+  }, [defaultUsuario, usuarios]);
 
   // =========================
   // HABILITAR / DESHABILITAR

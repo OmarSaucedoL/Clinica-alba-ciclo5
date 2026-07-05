@@ -7,20 +7,20 @@ import {
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-export default function AgendaCitas({ onClose, dataMaster, user, onVerDetalles }) {
+export default function AgendaCitas({ onClose, dataMaster, user, onVerDetalles, defaultOdontologoId, defaultPacienteId, defaultPacienteNombre }) {
   const [citas, setCitas] = useState([]);
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
 
   const [currentPage, setCurrentPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
-  const [selectedOdontologo, setSelectedOdontologo] = useState("");
+  const [selectedOdontologo, setSelectedOdontologo] = useState(defaultOdontologoId || "");
   const [pacienteSearch, setPacienteSearch] = useState(
-    user?.rol >= 5 ? user?.nombre || user?.nombre_usuario || "Mi Perfil" : "",
+    defaultPacienteNombre || (user?.rol >= 5 ? user?.nombre || user?.nombre_usuario || "Mi Perfil" : ""),
   );
   const [showPacienteDropdown, setShowPacienteDropdown] = useState(false);
   const [selectedPacienteId, setSelectedPacienteId] = useState(
-    user?.rol >= 5 ? user?.id_persona || "" : "",
+    defaultPacienteId || (user?.rol >= 5 ? user?.id_persona || "" : ""),
   );
   const [selectedSala, setSelectedSala] = useState("");
   const [selectedEstado, setSelectedEstado] = useState("");
@@ -28,6 +28,21 @@ export default function AgendaCitas({ onClose, dataMaster, user, onVerDetalles }
   const [fechaFin, setFechaFin] = useState("");
   const [pacientes, setPacientes] = useState([]);
   const limit = 10;
+
+  useEffect(() => {
+    if (defaultOdontologoId) {
+      setSelectedOdontologo(defaultOdontologoId);
+    }
+  }, [defaultOdontologoId]);
+
+  useEffect(() => {
+    if (defaultPacienteId) {
+      setSelectedPacienteId(defaultPacienteId);
+    }
+    if (defaultPacienteNombre) {
+      setPacienteSearch(defaultPacienteNombre);
+    }
+  }, [defaultPacienteId, defaultPacienteNombre]);
 
   useEffect(() => {
     const fetchPacientes = async () => {
