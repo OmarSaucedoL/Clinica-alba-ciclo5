@@ -202,19 +202,27 @@ def _obtener_info_empleado(id_personal):
     cargo = emp_info[1] if emp_info else "Empleado"
     return nombre, cargo
 
+def _calcular_totales(pares):
+    total_minutes, completed = 0, 0
+    for item in pares:
+        dur = item.get('duracion') or ""
+        if item.get('entrada') and item.get('salida') and "h" in dur:
+            completed += 1
+            try:
+                h, m = map(int, dur.replace("h", "").replace("m", "").split())
+                total_minutes += (h * 60) + m
+            except Exception: pass
+    return completed, f"{total_minutes // 60}h {total_minutes % 60}m"
+
 def _generar_asistencia_pdf(nombre_empleado, cargo, mes, pares):
     buffer = io.BytesIO()
     doc = SimpleDocTemplate(buffer, pagesize=letter, rightMargin=40, leftMargin=40, topMargin=40, bottomMargin=40)
     story = []
     
-    # Styles helper to prevent massive boilerplate
     styles = getSampleStyleSheet()
     p_style = lambda name, size, bold=False, color='#2A5C4D', align=0, space=0: ParagraphStyle(
-        name, parent=styles['Normal'],
-        fontName='Helvetica-Bold' if bold else 'Helvetica',
-        fontSize=size, leading=size + 3,
-        textColor=colors.HexColor(color) if isinstance(color, str) else color,
-        alignment=align, spaceAfter=space
+        name, parent=styles['Normal'], fontName='Helvetica-Bold' if bold else 'Helvetica', fontSize=size, leading=size + 3,
+        textColor=colors.HexColor(color) if isinstance(color, str) else color, alignment=align, spaceAfter=space
     )
     
     title_style = p_style('T', 18, bold=True, align=1, space=5)
@@ -227,41 +235,33 @@ def _generar_asistencia_pdf(nombre_empleado, cargo, mes, pares):
     story.append(Paragraph("CLÍNICA ODONTOLÓGICA ALBA", title_style))
     story.append(Paragraph(f"REPORTE MENSUAL DE ASISTENCIA - {mes}", sub_style))
     
-    # Calculate stats
-    total_minutes, completed_shifts = 0, 0
-    for item in pares:
-        dur = item.get('duracion') or ""
-        if item.get('entrada') and item.get('salida') and "h" in dur:
-            completed_shifts += 1
-            try:
-                h, m = map(int, dur.replace("h", "").replace("m", "").split())
-                total_minutes += (h * 60) + m
-            except Exception: pass
-            
-    total_time_str = f"{total_minutes // 60}h {total_minutes % 60}m"
+    completed_shifts, total_time_str = _calcular_totales(pares)
+
+    def get_table(data, widths, bg_color, is_header=False):
+        t = Table(data, colWidths=widths)
+        bg_range = ((0, 0), (-1, 0)) if is_header else ((0, 0), (-1, -1))
+        t.setStyle(TableStyle([
+            ('BACKGROUND', bg_range[0], bg_range[1], colors.HexColor(bg_color)),
+            ('ALIGN', (0,0), (-1,-1), 'LEFT'),
+            ('PADDING', (0,0), (-1,-1), 8),
+            ('BOX', (0,0), (-1,-1), 1, colors.HexColor('#E4EFEF')),
+            ('INNERGRID', (0,0), (-1,-1), 0.5, colors.HexColor('#E4EFEF')),
+        ]))
+        return t
 
     # Info block
-    info_table = Table([
+    info_table = get_table([
         [Paragraph("<b>Empleado:</b>", cell_bold), Paragraph(nombre_empleado, cell_style),
          Paragraph("<b>Cargo:</b>", cell_bold), Paragraph(cargo, cell_style)],
         [Paragraph("<b>Período:</b>", cell_bold), Paragraph(mes, cell_style),
          Paragraph("<b>Turnos Completados:</b>", cell_bold), Paragraph(str(completed_shifts), cell_style)]
-    ], colWidths=[100, 160, 110, 130])
-    info_table.setStyle(TableStyle([
-        ('BACKGROUND', (0,0), (-1,-1), colors.HexColor('#F4F9F9')),
-        ('PADDING', (0,0), (-1,-1), 8),
-        ('ALIGN', (0,0), (-1,-1), 'LEFT'),
-        ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
-        ('BOX', (0,0), (-1,-1), 1, colors.HexColor('#E4EFEF')),
-        ('INNERGRID', (0,0), (-1,-1), 0.5, colors.HexColor('#E4EFEF')),
-    ]))
+    ], [100, 160, 110, 130], '#F4F9F9')
     story.append(info_table)
     story.append(Spacer(1, 15))
     
     # Details Section
     story.append(Paragraph("Detalle de Jornada Laboral", sec_style))
-    details_data = [[Paragraph("Entrada", h_cell_style), Paragraph("Salida", h_cell_style), Paragraph("Duración", h_cell_style)]]
-    
+    details_data = [[Paragraph(h, h_cell_style) for h in ["Entrada", "Salida", "Duración"]]]
     for item in pares:
         ent, sal, dur = item.get('entrada') or "Falta registrar entrada", item.get('salida') or "Falta registrar salida", item.get('duracion') or "Incompleto"
         details_data.append([
@@ -270,15 +270,7 @@ def _generar_asistencia_pdf(nombre_empleado, cargo, mes, pares):
             Paragraph(dur, cell_bold if item.get('entrada') and item.get('salida') else cell_style)
         ])
     
-    details_table = Table(details_data, colWidths=[200, 200, 100])
-    details_table.setStyle(TableStyle([
-        ('BACKGROUND', (0,0), (-1,0), colors.HexColor('#2A5C4D')),
-        ('ALIGN', (0,0), (-1,-1), 'LEFT'),
-        ('PADDING', (0,0), (-1,-1), 8),
-        ('BOX', (0,0), (-1,-1), 1, colors.HexColor('#E4EFEF')),
-        ('INNERGRID', (0,0), (-1,-1), 0.5, colors.HexColor('#E4EFEF')),
-    ]))
-    story.append(details_table)
+    story.append(get_table(details_data, [200, 200, 100], '#2A5C4D', is_header=True))
     story.append(Spacer(1, 15))
     
     # Totals
@@ -286,14 +278,10 @@ def _generar_asistencia_pdf(nombre_empleado, cargo, mes, pares):
         [Paragraph("", cell_style), Paragraph("<b>Total Turnos Completados:</b>", cell_bold), Paragraph(str(completed_shifts), cell_bold)],
         [Paragraph("", cell_style), Paragraph("<b>Tiempo Total Trabajado:</b>", cell_bold), Paragraph(total_time_str, cell_bold)]
     ], colWidths=[250, 170, 80])
-    stats_table.setStyle(TableStyle([
-        ('ALIGN', (0,0), (-1,-1), 'RIGHT'),
-        ('PADDING', (0,0), (-1,-1), 6),
-    ]))
+    stats_table.setStyle(TableStyle([('ALIGN', (0,0), (-1,-1), 'RIGHT'), ('PADDING', (0,0), (-1,-1), 6)]))
     story.append(stats_table)
     story.append(Spacer(1, 40))
     
-    # Footer
     story.append(Paragraph("___________________________", sub_style))
     story.append(Paragraph("Firma del Empleado / Firma Autorizada", p_style('F', 8, color=colors.gray, align=1)))
     
@@ -303,26 +291,8 @@ def _generar_asistencia_pdf(nombre_empleado, cargo, mes, pares):
     return pdf_bytes
 
 def _generar_asistencia_csv(nombre_empleado, cargo, mes, pares):
-    total_minutes = 0
-    completed_shifts = 0
-    for item in pares:
-        dur = item.get('duracion') or ""
-        if item.get('entrada') and item.get('salida') and "h" in dur:
-            completed_shifts += 1
-            try:
-                parts = dur.split(" ")
-                h = int(parts[0].replace("h", ""))
-                m = int(parts[1].replace("m", ""))
-                total_minutes += (h * 60) + m
-            except Exception:
-                pass
-    
-    total_hours = total_minutes // 60
-    total_remaining_mins = total_minutes % 60
-    total_time_str = f"{total_hours}h {total_remaining_mins}m"
-    
+    completed_shifts, total_time_str = _calcular_totales(pares)
     output = io.StringIO()
-    # Add UTF-8 BOM so Excel opens it correctly
     output.write('\ufeff')
     writer = csv.writer(output, delimiter=';')
     
