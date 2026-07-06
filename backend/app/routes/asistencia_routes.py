@@ -185,34 +185,9 @@ def reporte_mensual():
         return jsonify({"success": False, "message": str(e)}), 500
 
 def _obtener_pares_mensual(id_personal, mes):
-    mes = mes.strip()
-    fmt = 'YYYY' if len(mes) == 4 else 'YYYY-MM'
-    query = f"SELECT tipo, fecha_registro FROM {Config.SCHEMA}.t_asistencia WHERE id_personal = %s AND TO_CHAR(fecha_registro, '{fmt}') = %s ORDER BY fecha_registro ASC"
-    rows = db.execute_query(query, (id_personal, mes), fetchall=True) or []
-    
-    pares, entrada_activa = [], None
-    for tipo, fecha in rows:
-        f_str = fecha.strftime("%d/%m/%Y %H:%M:%S")
-        if tipo == "ENTRADA":
-            if entrada_activa:
-                pares.append({"entrada": entrada_activa.strftime("%d/%m/%Y %H:%M:%S"), "salida": None, "duracion": "Falta marcar salida"})
-            entrada_activa = fecha
-        else:
-            if entrada_activa:
-                diff = int((fecha - entrada_activa).total_seconds())
-                pares.append({
-                    "entrada": entrada_activa.strftime("%d/%m/%Y %H:%M:%S"), 
-                    "salida": f_str, 
-                    "duracion": f"{diff // 3600}h {(diff % 3600) // 60}m"
-                })
-                entrada_activa = None
-            else:
-                pares.append({"entrada": None, "salida": f_str, "duracion": "Falta marcar entrada"})
-                
-    if entrada_activa:
-        pares.append({"entrada": entrada_activa.strftime("%d/%m/%Y %H:%M:%S"), "salida": None, "duracion": "Pendiente (En curso / Falta salida)"})
-        
-    return pares
+    query = f"SELECT entrada, salida, duracion FROM {Config.SCHEMA}.f_reporte_asistencia(%s, %s)"
+    rows = db.execute_query(query, (id_personal, mes.strip()), fetchall=True) or []
+    return [{"entrada": r[0], "salida": r[1], "duracion": r[2]} for r in rows]
 
 def _obtener_info_empleado(id_personal):
     emp_query = f"""
