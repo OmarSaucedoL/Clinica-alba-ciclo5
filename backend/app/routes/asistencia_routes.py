@@ -229,90 +229,49 @@ def _generar_asistencia_pdf(nombre_empleado, cargo, mes, pares):
     from reportlab.lib import colors
 
     buffer = io.BytesIO()
-    doc = SimpleDocTemplate(
-        buffer,
-        pagesize=letter,
-        rightMargin=40,
-        leftMargin=40,
-        topMargin=40,
-        bottomMargin=40
-    )
+    doc = SimpleDocTemplate(buffer, pagesize=letter, rightMargin=40, leftMargin=40, topMargin=40, bottomMargin=40)
     story = []
     
-    # Styles
+    # Styles helper to prevent massive boilerplate
     styles = getSampleStyleSheet()
-    title_style = ParagraphStyle(
-        'TitleStyle',
-        parent=styles['Heading1'],
-        fontName='Helvetica-Bold',
-        fontSize=18,
-        textColor=colors.HexColor('#2A5C4D'),
-        alignment=1,
-        spaceAfter=5
-    )
-    subtitle_style = ParagraphStyle(
-        'SubtitleStyle',
-        parent=styles['Normal'],
-        fontName='Helvetica-Bold',
-        fontSize=10,
-        textColor=colors.HexColor('#148F77'),
-        alignment=1,
-        spaceAfter=25
-    )
-    section_style = ParagraphStyle(
-        'SectionStyle',
-        parent=styles['Heading2'],
-        fontName='Helvetica-Bold',
-        fontSize=11,
-        textColor=colors.HexColor('#2A5C4D'),
-        spaceBefore=10,
-        spaceAfter=10
-    )
-    cell_style = ParagraphStyle(
-        'Cell',
-        parent=styles['Normal'],
-        fontSize=9,
-        leading=12
-    )
-    cell_bold = ParagraphStyle(
-        'CellBold',
-        parent=styles['Normal'],
-        fontName='Helvetica-Bold',
-        fontSize=9,
-        leading=12
+    p_style = lambda name, size, bold=False, color='#2A5C4D', align=0, space=0: ParagraphStyle(
+        name, parent=styles['Normal'],
+        fontName='Helvetica-Bold' if bold else 'Helvetica',
+        fontSize=size, leading=size + 3,
+        textColor=colors.HexColor(color) if isinstance(color, str) else color,
+        alignment=align, spaceAfter=space
     )
     
-    # Header
+    title_style = p_style('T', 18, bold=True, align=1, space=5)
+    sub_style = p_style('S', 10, bold=True, color='#148F77', align=1, space=25)
+    sec_style = p_style('Sec', 11, bold=True, space=10)
+    cell_style = p_style('C', 9, color=colors.black)
+    cell_bold = p_style('CB', 9, bold=True, color=colors.black)
+    h_cell_style = p_style('HC', 9, bold=True, color=colors.white)
+    
     story.append(Paragraph("CLÍNICA ODONTOLÓGICA ALBA", title_style))
-    story.append(Paragraph(f"REPORTE MENSUAL DE ASISTENCIA - {mes}", subtitle_style))
+    story.append(Paragraph(f"REPORTE MENSUAL DE ASISTENCIA - {mes}", sub_style))
     
     # Calculate stats
-    total_minutes = 0
-    completed_shifts = 0
+    total_minutes, completed_shifts = 0, 0
     for item in pares:
         dur = item.get('duracion') or ""
         if item.get('entrada') and item.get('salida') and "h" in dur:
             completed_shifts += 1
             try:
-                parts = dur.split(" ")
-                h = int(parts[0].replace("h", ""))
-                m = int(parts[1].replace("m", ""))
+                h, m = map(int, dur.replace("h", "").replace("m", "").split())
                 total_minutes += (h * 60) + m
-            except Exception:
-                pass
-    
-    total_hours = total_minutes // 60
-    total_remaining_mins = total_minutes % 60
-    total_time_str = f"{total_hours}h {total_remaining_mins}m"
+            except Exception: pass
+            
+    total_time_str = f"{total_minutes // 60}h {total_minutes % 60}m"
 
     # Info block
-    info_data = [
+    info_table = Table([
         [Paragraph("<b>Empleado:</b>", cell_bold), Paragraph(nombre_empleado, cell_style),
          Paragraph("<b>Cargo:</b>", cell_bold), Paragraph(cargo, cell_style)],
         [Paragraph("<b>Período:</b>", cell_bold), Paragraph(mes, cell_style),
          Paragraph("<b>Turnos Completados:</b>", cell_bold), Paragraph(str(completed_shifts), cell_style)]
-    ]
-    info_table = Table(info_data, colWidths=[100, 160, 110, 130])
+    ], colWidths=[100, 160, 110, 130])
     info_table.setStyle(TableStyle([
         ('BACKGROUND', (0,0), (-1,-1), colors.HexColor('#F4F9F9')),
         ('PADDING', (0,0), (-1,-1), 8),
@@ -325,30 +284,11 @@ def _generar_asistencia_pdf(nombre_empleado, cargo, mes, pares):
     story.append(Spacer(1, 15))
     
     # Details Section
-    story.append(Paragraph("Detalle de Jornada Laboral", section_style))
-    
-    header_cell_style = ParagraphStyle(
-        'HeaderCell',
-        parent=styles['Normal'],
-        fontName='Helvetica-Bold',
-        fontSize=9,
-        textColor=colors.white,
-        leading=12
-    )
-
-    details_data = [
-        [
-            Paragraph("Entrada", header_cell_style),
-            Paragraph("Salida", header_cell_style),
-            Paragraph("Duración", header_cell_style)
-        ]
-    ]
+    story.append(Paragraph("Detalle de Jornada Laboral", sec_style))
+    details_data = [[Paragraph("Entrada", h_cell_style), Paragraph("Salida", h_cell_style), Paragraph("Duración", h_cell_style)]]
     
     for item in pares:
-        ent = item.get('entrada') or "Falta registrar entrada"
-        sal = item.get('salida') or "Falta registrar salida"
-        dur = item.get('duracion') or "Incompleto"
-        
+        ent, sal, dur = item.get('entrada') or "Falta registrar entrada", item.get('salida') or "Falta registrar salida", item.get('duracion') or "Incompleto"
         details_data.append([
             Paragraph(f"<font color='{'red' if not item.get('entrada') else 'black'}'>{ent}</font>", cell_style),
             Paragraph(f"<font color='{'orange' if not item.get('salida') else 'black'}'>{sal}</font>", cell_style),
@@ -367,11 +307,10 @@ def _generar_asistencia_pdf(nombre_empleado, cargo, mes, pares):
     story.append(Spacer(1, 15))
     
     # Totals
-    stats_data = [
+    stats_table = Table([
         [Paragraph("", cell_style), Paragraph("<b>Total Turnos Completados:</b>", cell_bold), Paragraph(str(completed_shifts), cell_bold)],
         [Paragraph("", cell_style), Paragraph("<b>Tiempo Total Trabajado:</b>", cell_bold), Paragraph(total_time_str, cell_bold)]
-    ]
-    stats_table = Table(stats_data, colWidths=[250, 170, 80])
+    ], colWidths=[250, 170, 80])
     stats_table.setStyle(TableStyle([
         ('ALIGN', (0,0), (-1,-1), 'RIGHT'),
         ('PADDING', (0,0), (-1,-1), 6),
@@ -380,16 +319,8 @@ def _generar_asistencia_pdf(nombre_empleado, cargo, mes, pares):
     story.append(Spacer(1, 40))
     
     # Footer
-    footer_style = ParagraphStyle(
-        'FooterStyle',
-        parent=styles['Normal'],
-        fontName='Helvetica-Oblique',
-        fontSize=8,
-        textColor=colors.gray,
-        alignment=1
-    )
-    story.append(Paragraph("___________________________", subtitle_style))
-    story.append(Paragraph("Firma del Empleado / Firma Autorizada", footer_style))
+    story.append(Paragraph("___________________________", sub_style))
+    story.append(Paragraph("Firma del Empleado / Firma Autorizada", p_style('F', 8, color=colors.gray, align=1)))
     
     doc.build(story)
     pdf_bytes = buffer.getvalue()
