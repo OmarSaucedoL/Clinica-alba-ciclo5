@@ -529,7 +529,7 @@ export default function Panel() {
 
           {/* ASISTENCIA */}
           {activeMenu === "Asistencia" && userRolId < 5 && (
-            <ModuloAsistencia userRolId={userRolId} user={user} />
+            <ModuloAsistencia userRolId={userRolId} user={user} dataMaster={dataMaster} />
           )}
 
           {/* MÓDULO EN DESARROLLO */}
