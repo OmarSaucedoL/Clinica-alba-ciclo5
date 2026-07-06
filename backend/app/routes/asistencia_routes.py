@@ -37,81 +37,43 @@ def generar_token():
 @asistencia_routes.route('/api/asistencia/marcar', methods=['POST'])
 def registrar_asistencia():
     user = Security.decode_token()
-    if not user:
-        return jsonify({"success": False, "message": "No autenticado"}), 401
-    
-    id_personal = user["id_persona"]
-    id_usuario = user["id_usuario"]
-    
-    # Si no es un empleado válido (por ejemplo, es un paciente/cliente con rol 5 o 6)
-    if user["rol"] not in (1, 2, 3, 4):
-        return jsonify({"success": False, "message": "No autorizado para registrar asistencia"}), 403
+    if not user or user["rol"] not in (1, 2, 3, 4):
+        return jsonify({"success": False, "message": "No autenticado o no autorizado"}), 401 if not user else 403
         
-    data = request.get_json() or {}
-    token = data.get("token")
-    
+    token = (request.get_json() or {}).get("token")
     if not token:
         return jsonify({"success": False, "message": "Falta el token de asistencia"}), 400
         
-    # Verificar token en memoria
-    token_info = tokens_asistencia.get(token)
+    # Consumir y validar token en un paso para evitar sobrecarga y race conditions
+    token_info = tokens_asistencia.pop(token, None)
     if not token_info:
         return jsonify({"success": False, "message": "Código QR inválido o ya utilizado"}), 400
         
     if datetime.now() > token_info["expires_at"]:
-        # Limpiar token expirado
-        tokens_asistencia.pop(token, None)
         return jsonify({"success": False, "message": "El código QR ha expirado. Por favor, escanee de nuevo."}), 400
         
-    # Consumir el token (Single-use)
-    tokens_asistencia.pop(token)
-    
-    id_creador_qr = token_info["id_creador_qr"]
-    
-    # Determinar automáticamente si es ENTRADA o SALIDA basándonos en la última marca de hoy
     try:
-        # Buscar última marca de hoy del empleado
-        query_ultima = f"""
-            SELECT tipo 
-            FROM {Config.SCHEMA}.t_asistencia 
-            WHERE id_personal = %s AND DATE(fecha_registro) = CURRENT_DATE
-            ORDER BY fecha_registro DESC 
-            LIMIT 1
-        """
-        res_ultima = db.execute_query(query_ultima, (id_personal,), fetchone=True)
-        
-        tipo = "ENTRADA"
-        if res_ultima:
-            tipo_anterior = res_ultima[0]
-            tipo = "SALIDA" if tipo_anterior == "ENTRADA" else "ENTRADA"
+        # Determinar automáticamente si es ENTRADA o SALIDA consultando la última marca de hoy
+        res = db.execute_query(
+            f"SELECT tipo FROM {Config.SCHEMA}.t_asistencia WHERE id_personal = %s AND DATE(fecha_registro) = CURRENT_DATE ORDER BY fecha_registro DESC LIMIT 1",
+            (user["id_persona"],), fetchone=True
+        )
+        tipo = "SALIDA" if res and res[0] == "ENTRADA" else "ENTRADA"
             
         # Registrar asistencia en DB
-        sql_insert = f"""
-            INSERT INTO {Config.SCHEMA}.t_asistencia 
-            (id_personal, id_creador_qr, tipo) 
-            VALUES (%s, %s, %s)
-            RETURNING id_asistencia, fecha_registro
-        """
-        res_insert = db.execute_query(sql_insert, (id_personal, id_creador_qr, tipo), fetchone=True, commit=True)
+        res_ins = db.execute_query(
+            f"INSERT INTO {Config.SCHEMA}.t_asistencia (id_personal, id_creador_qr, tipo) VALUES (%s, %s, %s) RETURNING id_asistencia, fecha_registro",
+            (user["id_persona"], token_info["id_creador_qr"], tipo), fetchone=True, commit=True
+        )
         
         # Registrar en bitácora
-        Bitacora.registrar(
-            "ADMINISTRACION", 
-            f"ASISTENCIA_{tipo}", 
-            f"Registro de {tipo} exitoso para el empleado ID {id_personal}",
-            id_usuario=id_usuario
-        )
+        Bitacora.registrar("ADMINISTRACION", f"ASISTENCIA_{tipo}", f"Registro de {tipo} para empleado {user['id_persona']}", id_usuario=user["id_usuario"])
         
         return jsonify({
             "success": True,
             "message": f"¡Marca registrada con éxito! Has marcado tu {tipo}.",
-            "data": {
-                "id_asistencia": res_insert[0],
-                "tipo": tipo,
-                "fecha_registro": res_insert[1].isoformat()
-            }
+            "data": {"id_asistencia": res_ins[0], "tipo": tipo, "fecha_registro": res_ins[1].isoformat()}
         }), 201
-        
     except Exception as e:
         return jsonify({"success": False, "message": f"Error al registrar marca: {str(e)}"}), 500
 
