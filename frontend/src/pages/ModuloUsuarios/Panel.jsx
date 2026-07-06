@@ -33,7 +33,7 @@ import ModuloConsultorios from "../../components/UIs/consultorios/ModuloConsulto
 import ModuloServicios from "../../components/UIs/servicios/ModuloServicios";
 import ModuloOdontograma from "../ModuloPacientes/ModuloOdontograma";
 import AtajoGlobal from "../../components/UIs/AtajoGlobal/AtajoGlobal";
-import ModuloAsistencia from "../ModuloAdministrativo/ModuloAsistencia";
+import ModuloAsistencia from "../ModuloAsistencia/ModuloAsistencia";
 const API_URL = import.meta.env.VITE_API_URL;
 const ROLES = {
   ADMINISTRADOR: 1,
@@ -63,6 +63,7 @@ export default function Panel() {
   const [returnToView, setReturnToView] = useState(null);
   const [showAgendaPersonalState, setShowAgendaPersonalState] = useState(false);
   const [asistenciaToast, setAsistenciaToast] = useState(null);
+  const [selectedAsistenciaPersonalIdGlobal, setSelectedAsistenciaPersonalIdGlobal] = useState(null);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -527,9 +528,14 @@ export default function Panel() {
               />
             )}
 
-          {/* ASISTENCIA */}
           {activeMenu === "Asistencia" && userRolId < 5 && (
-            <ModuloAsistencia userRolId={userRolId} user={user} dataMaster={dataMaster} />
+            <ModuloAsistencia 
+              userRolId={userRolId} 
+              user={user} 
+              dataMaster={dataMaster} 
+              selectedPersonalIdGlobal={selectedAsistenciaPersonalIdGlobal}
+              onClearPersonalIdGlobal={() => setSelectedAsistenciaPersonalIdGlobal(null)}
+            />
           )}
 
           {/* MÓDULO EN DESARROLLO */}
@@ -610,6 +616,9 @@ export default function Panel() {
           } else if (action === "usuario") {
             setSelectedUserGlobal(staff);
             setActiveMenu("Usuarios y Roles");
+          } else if (action === "asistencia") {
+            setSelectedAsistenciaPersonalIdGlobal(staff.id_personal);
+            setActiveMenu("Asistencia");
           }
         }}
       />

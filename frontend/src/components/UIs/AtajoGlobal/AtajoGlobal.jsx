@@ -200,6 +200,11 @@ export default function AtajoGlobal({
                 action: "usuario",
                 cat: "ctx-staff",
               },
+              {
+                title: "Consultar Asistencia",
+                action: "asistencia",
+                cat: "ctx-staff",
+              },
             ]
           : []),
         { title: "Volver a la búsqueda", action: "atras", cat: "ctx-staff" },
