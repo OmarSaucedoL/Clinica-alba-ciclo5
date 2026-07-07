@@ -55,18 +55,16 @@ export default function ModuloAsistencia({
             Proyectar QR
           </button>
         )}
-        {!isAdmin && (
-          <button
-            onClick={() => handleTabChange("escanear")}
-            className={`px-5 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all cursor-pointer ${
-              activeTab === "escanear"
-                ? "bg-[#2A5C4D] text-white shadow-lg shadow-emerald-900/10"
-                : "text-gray-400 hover:text-gray-600 hover:bg-gray-50"
-            }`}
-          >
-            Escanear QR
-          </button>
-        )}
+        <button
+          onClick={() => handleTabChange("escanear")}
+          className={`px-5 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all cursor-pointer ${
+            activeTab === "escanear"
+              ? "bg-[#2A5C4D] text-white shadow-lg shadow-emerald-900/10"
+              : "text-gray-400 hover:text-gray-600 hover:bg-gray-50"
+          }`}
+        >
+          Escanear QR
+        </button>
         <button
           onClick={() => handleTabChange("historial")}
           className={`px-5 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all cursor-pointer ${
@@ -75,7 +73,7 @@ export default function ModuloAsistencia({
               : "text-gray-400 hover:text-gray-600 hover:bg-gray-50"
           }`}
         >
-          Historial Diario
+          Historial
         </button>
         <button
           onClick={() => handleTabChange("reporte")}
@@ -94,7 +92,7 @@ export default function ModuloAsistencia({
         <TabProyectarQR user={user} />
       )}
 
-      {activeTab === "escanear" && !isAdmin && (
+      {activeTab === "escanear" && (
         <TabEscanearQR user={user} />
       )}
 

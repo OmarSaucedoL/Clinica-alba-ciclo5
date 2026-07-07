@@ -84,15 +84,6 @@ export default function TabProyectarQR({ user }) {
         >
           Fuerza renovación
         </button>
-        <button
-          onClick={() => {
-            navigator.clipboard.writeText(getQRUrl());
-            alert("Enlace del QR copiado. Pégalo en la barra de direcciones de la pestaña del empleado para simular el escaneo.");
-          }}
-          className="text-[9px] font-black uppercase tracking-wider text-teal-600 hover:text-teal-700 hover:underline mt-2 cursor-pointer"
-        >
-          [Copiar Enlace de Prueba]
-        </button>
       </div>
     </div>
   );

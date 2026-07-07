@@ -16,6 +16,8 @@ export default function TabHistorialPersonal({ userRolId, user }) {
   const [loadingLogs, setLoadingLogs] = useState(false);
   const [logsError, setLogsError] = useState("");
   const [filterName, setFilterName] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const ITEMS_PER_PAGE = 10;
 
   const cargarHistorial = async () => {
     setLoadingLogs(true);
@@ -48,10 +50,22 @@ export default function TabHistorialPersonal({ userRolId, user }) {
       : "bg-orange-100 text-orange-700 border border-orange-200";
   };
 
+  const handleFilterChange = (e) => {
+    setFilterName(e.target.value);
+    setCurrentPage(1); // Resetear a la primera página cuando cambie el filtro
+  };
+
   const filteredLogs = logs.filter((log) => {
     if (!filterName.trim()) return true;
     return log.nombre_empleado?.toLowerCase().includes(filterName.toLowerCase());
   });
+
+  // Lógica de paginación
+  const totalPages = Math.ceil(filteredLogs.length / ITEMS_PER_PAGE);
+  const paginatedLogs = filteredLogs.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE
+  );
 
   return (
     <div className="space-y-4 animate-fade-in w-full">
@@ -64,7 +78,7 @@ export default function TabHistorialPersonal({ userRolId, user }) {
               type="text"
               placeholder="Ej: Dr. Pérez..."
               value={filterName}
-              onChange={(e) => setFilterName(e.target.value)}
+              onChange={handleFilterChange}
               className="w-full p-3.5 bg-gray-50 rounded-xl text-xs font-bold border-none outline-none focus:ring-2 focus:ring-emerald-200"
             />
           </div>
@@ -78,8 +92,8 @@ export default function TabHistorialPersonal({ userRolId, user }) {
       )}
 
       {/* Tabla de registros (Ancho completo) */}
-      <div className="bg-white rounded-[2rem] shadow-xl overflow-hidden border border-gray-100">
-        <div className="overflow-x-auto">
+      <div className="bg-white rounded-[2rem] shadow-xl overflow-hidden border border-gray-100 flex flex-col justify-between min-h-[400px]">
+        <div className="overflow-x-auto flex-1">
           <table className="w-full text-left border-collapse min-w-[700px]">
             <thead>
               <tr className="bg-[#2A5C4D] text-white">
@@ -102,8 +116,8 @@ export default function TabHistorialPersonal({ userRolId, user }) {
                     </div>
                   </td>
                 </tr>
-              ) : filteredLogs.length > 0 ? (
-                filteredLogs.map((log) => (
+              ) : paginatedLogs.length > 0 ? (
+                paginatedLogs.map((log) => (
                   <tr key={log.id_asistencia} className="hover:bg-emerald-50/20 transition-colors">
                     <td className="p-5 text-xs font-bold text-gray-500">{log.fecha_registro}</td>
                     {isAdmin && (
@@ -132,7 +146,31 @@ export default function TabHistorialPersonal({ userRolId, user }) {
             </tbody>
           </table>
         </div>
+
+        {/* Paginación */}
+        {totalPages > 1 && (
+          <div className="p-5 border-t border-gray-100 flex items-center justify-between bg-gray-50/50">
+            <button
+              onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
+              disabled={currentPage === 1}
+              className="px-4 py-2 border border-gray-200 bg-white rounded-xl text-xs font-black text-gray-500 uppercase tracking-wider hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+            >
+              Anterior
+            </button>
+            <span className="text-[10px] font-black text-[#2A5C4D] uppercase tracking-widest">
+              Página {currentPage} de {totalPages}
+            </span>
+            <button
+              onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
+              disabled={currentPage === totalPages}
+              className="px-4 py-2 border border-gray-200 bg-white rounded-xl text-xs font-black text-gray-500 uppercase tracking-wider hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+            >
+              Siguiente
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
 }
+
