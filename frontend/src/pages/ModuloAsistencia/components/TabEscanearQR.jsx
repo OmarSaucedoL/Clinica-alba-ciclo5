@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
 export default function TabEscanearQR({ user }) {
   const [scannerLoaded, setScannerLoaded] = useState(false);
   const [isScanning, setIsScanning] = useState(false);
-  const [scannerInstance, setScannerInstance] = useState(null);
+  const scannerRef = useRef(null);
   const [scanResult, setScanResult] = useState(null);
   const [submittingCheckin, setSubmittingCheckin] = useState(false);
 
@@ -19,19 +19,17 @@ export default function TabEscanearQR({ user }) {
     script.async = true;
     script.onload = () => setScannerLoaded(true);
     document.body.appendChild(script);
-
-    return () => {
-      // Nettoyage si necessaire
-    };
   }, []);
 
+  // Limpieza al desmontar el componente
   useEffect(() => {
     return () => {
-      if (scannerInstance) {
-        scannerInstance.stop().catch(console.error);
+      if (scannerRef.current) {
+        scannerRef.current.stop().catch(() => {});
+        scannerRef.current = null;
       }
     };
-  }, [scannerInstance]);
+  }, []);
 
   const registrarAsistencia = async (token) => {
     setSubmittingCheckin(true);
@@ -63,46 +61,55 @@ export default function TabEscanearQR({ user }) {
     setIsScanning(true);
     setScanResult(null);
 
+    // Pequeño delay para que el div #reader sea visible en el DOM antes de iniciar
     setTimeout(() => {
       try {
         const html5QrCode = new window.Html5Qrcode("reader");
-        setScannerInstance(html5QrCode);
+        scannerRef.current = html5QrCode;
         html5QrCode.start(
           { facingMode: "environment" },
-          { fps: 10, qrbox: { width: 260, height: 260 } },
+          { fps: 10, qrbox: { width: 250, height: 250 } },
           (decodedText) => {
-            html5QrCode.stop().then(() => {
-              setIsScanning(false);
-              setScannerInstance(null);
-              
-              let token = decodedText;
-              if (decodedText.includes("checkin_token=")) {
+            // Detener escáner sin desmontar el div
+            html5QrCode.stop().catch(() => {});
+            scannerRef.current = null;
+            setIsScanning(false);
+
+            let token = decodedText;
+            if (decodedText.includes("checkin_token=")) {
+              try {
                 const urlParams = new URLSearchParams(decodedText.split("?")[1]);
                 token = urlParams.get("checkin_token");
-              }
-              
-              registrarAsistencia(token);
-            }).catch(console.error);
+              } catch (_) {}
+            }
+
+            registrarAsistencia(token);
           },
-          () => {}
+          () => {} // frame error (ignorar)
         ).catch((err) => {
           console.error("Error al iniciar cámara:", err);
-          alert("No se pudo acceder a la cámara. Asegúrese de otorgar permisos.");
+          scannerRef.current = null;
           setIsScanning(false);
+          setScanResult({ success: false, message: "No se pudo acceder a la cámara. Verifique los permisos." });
         });
       } catch (e) {
         console.error(e);
+        scannerRef.current = null;
         setIsScanning(false);
+        setScanResult({ success: false, message: "Error al inicializar el escáner." });
       }
-    }, 150);
+    }, 200);
   };
 
   const detenerEscaneo = () => {
-    if (scannerInstance) {
-      scannerInstance.stop().then(() => {
+    if (scannerRef.current) {
+      scannerRef.current.stop().then(() => {
+        scannerRef.current = null;
         setIsScanning(false);
-        setScannerInstance(null);
-      }).catch(console.error);
+      }).catch(() => {
+        scannerRef.current = null;
+        setIsScanning(false);
+      });
     } else {
       setIsScanning(false);
     }
@@ -119,20 +126,21 @@ export default function TabEscanearQR({ user }) {
         </p>
       </div>
 
-      {isScanning ? (
-        <div className="space-y-4">
-          <div
-            id="reader"
-            className="overflow-hidden rounded-3xl border-2 border-[#148F77] bg-black shadow-md mx-auto w-full max-w-sm"
-          ></div>
-          <button
-            onClick={detenerEscaneo}
-            className="px-6 py-3 bg-rose-600 text-white rounded-2xl text-xs font-black uppercase tracking-wider shadow-lg active:scale-95 transition-all hover:bg-rose-700 cursor-pointer"
-          >
-            Cancelar Escaneo
-          </button>
-        </div>
-      ) : (
+      {/* El div #reader SIEMPRE está en el DOM para evitar conflictos con React */}
+      <div style={{ display: isScanning ? "block" : "none" }} className="space-y-4">
+        <div
+          id="reader"
+          className="overflow-hidden rounded-3xl border-2 border-[#148F77] bg-black shadow-md mx-auto w-full max-w-sm"
+        />
+        <button
+          onClick={detenerEscaneo}
+          className="px-6 py-3 bg-rose-600 text-white rounded-2xl text-xs font-black uppercase tracking-wider shadow-lg active:scale-95 transition-all hover:bg-rose-700 cursor-pointer"
+        >
+          Cancelar Escaneo
+        </button>
+      </div>
+
+      {!isScanning && (
         <div className="py-6 flex flex-col items-center gap-4">
           <div className="p-8 bg-emerald-50 rounded-full text-[#148F77]">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -141,9 +149,10 @@ export default function TabEscanearQR({ user }) {
           </div>
           <button
             onClick={iniciarEscaneo}
-            className="px-8 py-4 bg-[#148F77] text-white rounded-2xl text-xs font-black uppercase tracking-widest shadow-xl active:scale-95 transition-all hover:bg-[#117A65] cursor-pointer"
+            disabled={!scannerLoaded}
+            className="px-8 py-4 bg-[#148F77] text-white rounded-2xl text-xs font-black uppercase tracking-widest shadow-xl active:scale-95 transition-all hover:bg-[#117A65] cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Activar Cámara
+            {scannerLoaded ? "Activar Cámara" : "Cargando escáner..."}
           </button>
         </div>
       )}
