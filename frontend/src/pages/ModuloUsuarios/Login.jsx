@@ -63,7 +63,8 @@ export default function Login() {
         localStorage.setItem("token", data.token);
         localStorage.setItem("user", JSON.stringify(data.user));
         login(data.user);
-        navigate('/panel');
+        // Preservar checkin_token u otros query params de la URL actual
+        navigate(`/panel${location.search}`, { replace: true });
       } else {
         throw new Error(data.message || 'Credenciales incorrectas');
       }
