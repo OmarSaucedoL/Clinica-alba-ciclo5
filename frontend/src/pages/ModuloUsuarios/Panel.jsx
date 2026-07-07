@@ -69,8 +69,8 @@ export default function Panel() {
     const params = new URLSearchParams(window.location.search);
     const token = params.get("checkin_token");
     if (token) {
-      // Limpiar de la URL sin recargar
-      window.history.replaceState({}, document.title, window.location.pathname);
+      // Limpiar de la URL sin recargar usando el enrutador de React
+      navigate(window.location.pathname, { replace: true });
       
       const registrarCheckin = async () => {
         try {
@@ -95,7 +95,7 @@ export default function Panel() {
       
       setTimeout(registrarCheckin, 500);
     }
-  }, []);
+  }, [navigate]);
   const [dataMaster, setDataMaster] = useState({
     procedimientos: [],
     odontologos: [],
