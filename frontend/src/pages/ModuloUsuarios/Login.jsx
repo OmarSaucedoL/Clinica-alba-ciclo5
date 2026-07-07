@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import logo from '../../assets/LOGO.png';
 import fondoWelcome from '../../assets/Fondo_Welcome.jpg';
 import { useAuthStore } from '../../store/auth_store';
@@ -26,14 +26,15 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
+  const location = useLocation();
   const { login } = useAuthStore();
   const loggedInUser = useAuthStore((state) => state.user);
 
   useEffect(() => {
     if (loggedInUser) {
-      navigate('/panel', { replace: true });
+      navigate(`/panel${location.search}`, { replace: true });
     }
-  }, [loggedInUser, navigate]);
+  }, [loggedInUser, navigate, location.search]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
