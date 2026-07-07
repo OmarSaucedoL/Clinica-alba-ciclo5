@@ -40,7 +40,8 @@ def create_app():
     allowed_origins = [
         "http://localhost:5173",          # Vite local
         "http://127.0.0.1:5173",        # Vite local alternativo
-        "https://clinica-ro.onrender.com",    # Tu futuro dominio real
+        "https://clinica-alba-ciclo5.onrender.com",    # Tu futuro dominio real
+        Config.FRONTEND_URL,              # URL de producción configurada dinámicamente
     ]
 
     CORS(
