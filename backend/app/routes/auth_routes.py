@@ -273,7 +273,7 @@ def validate_token():
 
         # Buscamos tokens no usados para este usuario
         sql = f"""
-            SELECT id_token, token_hash, fecha_expiracion 
+            SELECT id_token, token_hash, fecha_expiracion AT TIME ZONE current_setting('timezone') AS fecha_expiracion
             FROM {Config.SCHEMA}.t_token_recuperacion 
             WHERE id_usuario = %s AND usado = FALSE
         """
@@ -288,8 +288,7 @@ def validate_token():
                 ahora = datetime.now(timezone.utc)
                 # Si t_exp no tiene zona horaria, la asignamos como UTC para evitar errores
                 if t_exp.tzinfo is None:
-                    from datetime import timezone as tz
-                    t_exp = t_exp.replace(tzinfo=tz.utc)
+                    t_exp = t_exp.replace(tzinfo=timezone.utc)
                 if t_exp > ahora:
                     token_valido = True
                     break
