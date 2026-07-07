@@ -272,7 +272,6 @@ def validate_token():
             return jsonify({'success': False, 'message': 'Parámetros incompletos.'}), 400
 
         # Buscamos tokens no usados para este usuario
-        # También verificamos que no hayan pasado más de 2 horas (o el tiempo que definas)
         sql = f"""
             SELECT id_token, token_hash, fecha_expiracion 
             FROM {Config.SCHEMA}.t_token_recuperacion 
@@ -284,9 +283,14 @@ def validate_token():
         token_valido = False
         for t_id, t_hash, t_exp in (tokens or []):
             if check_password_hash(t_hash, token_plano):
-                # Opcional: Verificar fecha de expiración manualmente si no lo hace el SQL
-                from datetime import datetime
-                if t_exp > datetime.now():
+                from datetime import datetime, timezone
+                # Usar now(timezone.utc) para comparar correctamente con timestamps de PostgreSQL (timezone-aware)
+                ahora = datetime.now(timezone.utc)
+                # Si t_exp no tiene zona horaria, la asignamos como UTC para evitar errores
+                if t_exp.tzinfo is None:
+                    from datetime import timezone as tz
+                    t_exp = t_exp.replace(tzinfo=tz.utc)
+                if t_exp > ahora:
                     token_valido = True
                     break
 
